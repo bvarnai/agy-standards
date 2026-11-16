@@ -10,7 +10,6 @@
 
 ## Approval gates (actions requiring explicit confirmation)
 The agent must request explicit user approval or wait for explicit instruction before executing:
-- Modifying existing project files (`edit_file` / `replace_file_content`) or creating new project files (`write_file` / `write_to_file`), unless the invoked skill's **Permission** line covers the file. A skill whose Permission is `none` grants nothing.
 - Deleting, moving, or renaming files (`rm`, `mv`).
 - Mutating git actions (`git add`, `git commit`, `git push`, `git tag`, `git checkout`, `git reset`, `git rebase`, `git clean`).
 - Network operations or package installations (`curl`, `wget`, `pip`, `npm`, `apt`, `mvn`, `go install`).
