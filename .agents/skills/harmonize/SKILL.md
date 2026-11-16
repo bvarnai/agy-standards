@@ -1,16 +1,15 @@
 ---
-name: 06-harmonize
-description: Compare two projects (a Reference repository and a Target repository) to perform a structural gap analysis and produce a deterministic uplift plan across specifications, package/build architecture, CI/release pipelines, and documentation. Activate when comparing, aligning, or harmonizing two repositories or running /06-harmonize.
+name: harmonize
+description: Compare two projects (a Reference repository and a Target repository) to perform a structural gap analysis and produce a deterministic uplift plan across specifications, package/build architecture, CI/release pipelines, and documentation. Activate when comparing, aligning, or harmonizing two repositories or running /harmonize.
 metadata:
-  lifecycle_stage: "06-harmonize"
   mode: "interactive"
   recommended_flags: "--mode plan --effort high"
 ---
 
-# 06 — Cross-project comparison & harmonization
+# Cross-project comparison & harmonization
 
 ## Constraints & workspace boundaries
-- **Tone:** Follow [strict-technical-tone.md](../../fragments/strict-technical-tone.md).
+- **Tone:** Follow [strict-technical-tone.md](../../../fragments/strict-technical-tone.md).
 - **Permission:** None. Produce a plan and wait for approval.
 1. **Evidence-based deltas**: Base every finding and action on the concrete delta between the two inspected repositories.
 2. **Input resolution**:
