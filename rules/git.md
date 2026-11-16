@@ -8,4 +8,4 @@
 - **Submodules:** commit submodule pointer updates in their own commit (`chore(submodule): bump <name>`), only after the referenced commit is pushed to the submodule remote.
 
 ## Branches, syncing, PRs, and merging
-When `git-brx` is on `PATH`, follow the `git-brx` skill instead of plain `git` or `gh` for branch and PR lifecycle operations; otherwise follow the project's own conventions.
+When `git-brx` is on `PATH`, always follow the `git-brx` skill and do not use plain `git` or `gh` for branch and PR lifecycle operations; otherwise follow the project's own conventions.
