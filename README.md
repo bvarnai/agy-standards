@@ -74,7 +74,7 @@ agy-standards/
 │   ├── java.md                         # Modern Java idioms, null-safety, Maven/Gradle verification
 │   ├── embedded.md                     # Embedded C/C++ deterministic memory, ISR safety, HAL
 │   └── shell.md                        # Bash/Shell naming (kebab-case CLI), safety, shellcheck & Bats
-├── skills/                             # Lifecycle slash commands (/00-spec .. /07-models)
+├── skills/                             # Lifecycle slash commands (/00-spec .. /05-release)
 │   └── <NN-skill>/SKILL.md             # Skill definition (+ templates/ where applicable)
 └── fragments/                          # Shared prompt constraints (e.g., strict-technical-tone.md)
 ```
@@ -96,19 +96,13 @@ Run these skills inside an interactive `agy` session, or invoke supported stages
 | **4. Audit** | `/04-audit` | `low` | `agy --effort low -p "/04-audit"` | Read-only pre-release readiness checklist. |
 | **5. Release** | `/05-release` | `low` | — | Prepare changelog/manifests and tag default branch. |
 
-### Occasional & maintenance tasks
-
-| Task | Slash command | Mode & effort | Purpose |
-| :--- | :--- | :--- | :--- |
-| **6. Harmonize** | `/06-harmonize` | `plan`, `high` | Compare two repos & plan structural uplift. |
-
 ### Model & effort mental compass
 
 Start your `agy` session in **Build** (`medium`) as the default, then shift up to **Think** or down to **Mechanical** only when the stage calls for it:
 
 | Gear | When to use | Stages | Model profile | Effort & mode |
 | :--- | :--- | :--- | :--- | :--- |
-| **1. Think** | Designing architecture, catching subtle drift, or stuck on a hard bug | `00-spec`, `06-harmonize` | Strongest reasoning model | `high` *(+ `plan` for `00-spec` / `06-harmonize`)* |
+| **1. Think** | Designing architecture, catching subtle drift, or stuck on a hard bug | `00-spec` | Strongest reasoning model | `high` *(+ `plan` for `00-spec`)* |
 | **2. Build** *(default)* | Day-to-day coding, tests, issue drafting, and doc reviews | `01-issue`, `02-implement`, `03-docs` | Fast, surgical coding model | `medium` |
 | **3. Mechanical** | Deterministic checklists and release steps where deep reasoning adds latency | `04-audit`, `05-release`, trivial `chore:` / `docs:` | Fastest available (or same model) | `low` |
 
@@ -135,7 +129,7 @@ To add a new stack (e.g. Rust, Python), create `standards/<stack>.md` and add on
 
 ```bash
 mkdir -p ~/.gemini/config/plugins
-ln -sfn "<path-to-agy-standards>" ~/.gemini/config/plugins/agy-standards
+ln -sfn "<path-to-agy-standards>" ~/.gemini/config/plugins/standards
 ```
 
 ---

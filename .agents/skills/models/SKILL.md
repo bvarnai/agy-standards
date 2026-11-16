@@ -1,13 +1,12 @@
 ---
-name: 07-models
-description: Review currently available AI models in Antigravity (agy), evaluate their coding precision vs. deep reasoning/synthesis strengths, and update docs/models.md. Activate when asked to review models, refresh model recommendations, or running /07-models.
+name: models
+description: Review currently available AI models in Antigravity (agy), evaluate their coding precision vs. deep reasoning/synthesis strengths, and update docs/models.md. Activate when asked to review models, refresh model recommendations, or running /models.
 metadata:
-  lifecycle_stage: "07-models"
   mode: "interactive"
   recommended_flags: "--effort medium"
 ---
 
-# 07 — Model & effort compass review
+# Model & effort compass review
 
 ## Constraints & role
 - **Tone:** Follow [strict-technical-tone.md](../../../fragments/strict-technical-tone.md).
@@ -29,7 +28,7 @@ Classify the available models across the five `agy-standards` execution profiles
 
 | Task profile | Lifecycle stages | Primary bottleneck | Key selection criteria | Default effort |
 | :--- | :--- | :--- | :--- | :--- |
-| **1. Architecture, specs & cross-repo uplift** | `00-spec`<br>`06-harmonize` | Multi-file synthesis & invariant design | Deepest reasoning, legacy reverse-engineering accuracy, long-context coherence. | `--mode plan --effort high` |
+| **1. Architecture & specs** | `00-spec` | Multi-file synthesis & invariant design | Deepest reasoning, legacy reverse-engineering accuracy, long-context coherence. | `--mode plan --effort high` |
 | **2. Pre-release & cross-artifact audit** | `04-audit` | High-recall cross-checking (Spec $\leftrightarrow$ Code $\leftrightarrow$ Docs $\leftrightarrow$ CI) | Low false-positive rate, high attention across many files in a single read-only pass. | `--effort high`<br>*(or `medium` for branch diffs)* |
 | **3. Hands-on coding, TDD & tool loops** | `02-implement`<br>`01-issue` | 10–20 step tool-loop latency & surgical diff quality | Strict adherence to existing code style, minimal over-abstraction, fast `edit_file` $\rightarrow$ test cycles. | `--effort medium`<br>*(or `high` for race/concurrency bugs)* |
 | **4. Documentation tone & accuracy review** | `03-docs` | Natural developer prose + technical verification | Avoids stiff AI phrasing while accurately cross-checking flags and examples against code. | `--effort medium` |

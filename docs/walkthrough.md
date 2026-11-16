@@ -14,7 +14,7 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 🧑 You:
 
 ```bash
-> /agy-standards:00-spec we want to add a "dotctl clean" subcommand that removes broken symlinks from "$HOME"
+> /standards:00-spec we want to add a "dotctl clean" subcommand that removes broken symlinks from "$HOME"
 ```
 
 🤖 Antigravity:
@@ -55,7 +55,7 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 🧑 You:
 
 ```bash
-> /agy-standards:01-issue add the clean subcommand from the spec
+> /standards:01-issue add the clean subcommand from the spec
 ```
 
 *(If you run `/01-issue` with no description in a fresh session, the agent asks 1–3 clarifying questions first; otherwise it derives the commit-format title from context.)*
@@ -88,7 +88,7 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 🧑 You:
 
 ```bash
-> /agy-standards:02-implement implement issue from @[.issue-draft.md]
+> /standards:02-implement implement issue from @[.issue-draft.md]
 ```
 
 🤖 Antigravity:
@@ -154,7 +154,7 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 🧑 You:
 
 ```bash
-> /agy-standards:03-docs review README.md
+> /standards:03-docs review README.md
 ```
 
 🤖 Antigravity:
@@ -182,7 +182,7 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 
 🧑 You:
 ```bash
-> /agy-standards:04-audit
+> /standards:04-audit
 ```
 
 🤖 Antigravity:
@@ -203,7 +203,7 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 
 🧑 You:
 ```bash
-> /agy-standards:05-release
+> /standards:05-release
 ```
 
 🤖 Antigravity:
