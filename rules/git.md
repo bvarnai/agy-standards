@@ -2,6 +2,7 @@
 
 ## Commit messages
 - **Format:** `<type>(<component>): <description>` in lowercase imperative mood, at most 72 characters, no trailing period (e.g., `feat(cli): add --dry-run flag`). The scope names the component that changed, never an issue number.
+- **No issue references:** Do not add issue numbers or closing footers (`Closes #N`, `Fixes #N`, `Refs #N`) to the commit subject or body; issue linking belongs in the PR.
 - **Allowed types:** `feat`, `fix`, `refactor`, `perf`, `docs`, `test`, `ci`, `build`, `chore`.
 - **Breaking changes:** append `!` after the type or scope (`feat(cli)!: ...`) and add a `BREAKING CHANGE: <details>` footer.
 - **Submodules:** commit submodule pointer updates in their own commit (`chore(submodule): bump <name>`), only after the referenced commit is pushed to the submodule remote.
