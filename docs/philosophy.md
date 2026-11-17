@@ -39,7 +39,7 @@ If the agent hits a design question the spec doesn't answer, the intended behavi
 | Layer | Loaded | Purpose | Why it's separate |
 | :--- | :--- | :--- | :--- |
 | **Rules** (`rules/`) | Always | Workflow, commit conventions, tool and approval policy | Kept small because they cost context on every turn |
-| **Skills** (`skills/`) | When invoked (`/00-spec` … `/05-release`) | One lifecycle step each | Each step runs in its own session with its own effort level |
+| **Skills** (`skills/`) | When invoked (`/standards:00-spec` … `/standards:05-release`) | One lifecycle step each | Each step runs in its own session with its own effort level |
 | **Standards** (`standards/`) | When a stack marker matches (`go.mod`, `pom.xml`, …) | Language-specific idioms and verification commands | A Go project doesn't need Java rules in context |
 | **Fragments** (`fragments/`) | Referenced by skills | Shared constraints such as tone | Written once, reused everywhere |
 

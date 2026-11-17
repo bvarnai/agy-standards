@@ -58,7 +58,7 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 > /standards:01-issue add the clean subcommand from the spec
 ```
 
-*(If you run `/01-issue` with no description in a fresh session, the agent asks 1–3 clarifying questions first; otherwise it derives the commit-format title from context.)*
+*(If you run `/standards:01-issue` with no description in a fresh session, the agent asks 1–3 clarifying questions first; otherwise it derives the commit-format title from context.)*
 
 🤖 Antigravity:
 
@@ -75,7 +75,7 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 >   - **Edge cases and failure modes:** Valid symlinks untouched; missing target directory skipped with warning; permission error returns exit `1`; invalid `dotctl.yaml` returns exit `2`.
 >   - **Verification:** `go test -race ./...` and `go vet ./...`.
 >
->  Create the ticket in your tracker from `.issue-draft.md`, then run `/02-implement`.
+>  Create the ticket in your tracker from `.issue-draft.md`, then run `/standards:02-implement`.
 
 ---
 
@@ -212,9 +212,9 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 >
 >  Latest tag is `v0.3.0`. Commits since `v0.3.0` include `feat(clean): add dotctl clean subcommand` → next SemVer: `v0.4.0`.
 >
->  Updated `CHANGELOG.md` (moved `[Unreleased]` items under `## [0.4.0] - 2026-11-16`). **Stopped before tagging.** Create a release prep branch (`chore(release): prepare v0.4.0`), >  merge it into `main`, then re-run `/05-release`.
+>  Updated `CHANGELOG.md` (moved `[Unreleased]` items under `## [0.4.0] - 2026-11-16`). **Stopped before tagging.** Create a release prep branch (`chore(release): prepare v0.4.0`), merge it into `main`, then re-run `/standards:05-release`.
 
-*(User branches, commits, merges PR, updates `main`, and runs `/05-release` again.)*
+*(User branches, commits, merges PR, updates `main`, and runs `/standards:05-release` again.)*
 
 🤖 Antigravity:
 
