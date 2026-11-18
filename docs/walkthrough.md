@@ -21,7 +21,7 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 
 > ▸ Thought for 7s
 >
->  Loaded `agy-standards` (`go.mod` detected → `standards/go-cli.md`). Read `README.md`, `go.mod`, and `docs/spec/global.md`.
+>  Loaded `agy-standards` (`go.mod` detected → `standards/go.md`). Read `README.md`, `go.mod`, and `docs/spec/global.md`.
 >
 >  Before updating `docs/spec/`, three edge cases need a decision:
 >  1. **Scope:** Should `dotctl clean` scan `$HOME` non-recursively, recurse into all directories, or only scan paths managed in `dotctl.yaml`?

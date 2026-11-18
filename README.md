@@ -74,7 +74,7 @@ agy-standards/
 ├── rules/                              # Universal always-on rule entrypoint
 │   └── GEMINI.md                       # @-imports fragments + formatting & tool policy
 ├── standards/                          # Stack-specific standards (routed via fragments/stack-routing.md)
-│   ├── go-cli.md                       # Go CLI architecture, error wrapping & testing
+│   ├── go.md                           # Go architecture, error wrapping, concurrency & testing
 │   ├── java.md                         # Modern Java idioms, null-safety, Maven/Gradle verification
 │   ├── embedded.md                     # Embedded C/C++ deterministic memory, ISR safety, HAL
 │   └── shell.md                        # Bash/Shell naming (kebab-case CLI), safety, shellcheck & Bats
@@ -116,7 +116,7 @@ For concrete model picks and per-stage rationale, see [docs/models.md](./docs/mo
 
 Always-on [`fragments/stack-routing.md`](fragments/stack-routing.md) (imported by [`rules/GEMINI.md`](rules/GEMINI.md)) inspects the current working directory (`CWD`) during planning, issue drafting, implementation, and auditing to load the matching standard:
 
-- **Go**: Triggered by `go.mod` $\rightarrow$ enforces [standards/go-cli.md](standards/go-cli.md) (`go test -race ./...`, `go vet ./...`).
+- **Go**: Triggered by `go.mod` $\rightarrow$ enforces [standards/go.md](standards/go.md) (`go test -race ./...`, `go vet ./...`).
 - **Java**: Triggered by `pom.xml` / `build.gradle` $\rightarrow$ enforces [standards/java.md](standards/java.md) (`./mvnw test` / `./gradlew check`).
 - **Embedded C/C++**: Triggered by `CMakeLists.txt` / `platformio.ini` / `Kconfig` / `*.ld` $\rightarrow$ enforces [standards/embedded.md](standards/embedded.md) (deterministic memory, fixed-width types, ISR safety).
 - **Shell / Bash**: Triggered by `*.sh` / `*.bats` / `.bashrc.d/` $\rightarrow$ enforces [standards/shell.md](standards/shell.md) (`kebab-case` public interfaces, `shellcheck`, `bats`).
