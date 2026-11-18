@@ -6,6 +6,8 @@
 >
 > *"The old system scaled consistency. The new system must scale intent."* — [Katie Dill, Stripe](https://www.youtube.com/watch?v=GLvFTMtw4Jk)
 
+*In the era of AI coding, I still plan, write it down, and review the code. Some people run 4–6 agents in parallel—my brain has a concurrency limit of 1.*
+
 ---
 
 ## Approach
