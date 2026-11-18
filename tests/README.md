@@ -22,4 +22,4 @@ bats tests/lint
 shellcheck tests/lint/helpers.bash
 ```
 
-These checks catch structural problems. They don't check whether the agent behaves as intended. For that, reread the rules and skills as a whole, for example by running `/04-audit` against this repo before tagging a release.
+These checks catch structural problems. They don't check whether the agent behaves as intended. For that, reread the rules and skills as a whole, for example by running `/standards:04-audit` against this repo before tagging a release.
