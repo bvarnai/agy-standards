@@ -2,6 +2,10 @@
 
 [Google Antigravity](https://antigravity.google) (`agy`) plugin bundling global rules, lifecycle skills, and language-specific standards.
 
+> *"Building the wrong thing is still a waste even when building is faster."* — [Gergely Orosz, LDX3 New York 2026](https://www.youtube.com/watch?v=uErdlVHb8ow)
+>
+> *"The old system scaled consistency. The new system must scale intent."* — [Katie Dill, Stripe](https://www.youtube.com/watch?v=GLvFTMtw4Jk)
+
 ---
 
 ## Approach
@@ -74,7 +78,7 @@ agy-standards/
 │   ├── java.md                         # Modern Java idioms, null-safety, Maven/Gradle verification
 │   ├── embedded.md                     # Embedded C/C++ deterministic memory, ISR safety, HAL
 │   └── shell.md                        # Bash/Shell naming (kebab-case CLI), safety, shellcheck & Bats
-├── skills/                             # Lifecycle slash commands (/00-spec .. /05-release)
+├── skills/                             # Lifecycle slash commands (/standards:00-spec .. /standards:05-release)
 │   └── <NN-skill>/SKILL.md             # Skill definition (+ templates/ where applicable)
 └── fragments/                          # Shared prompt constraints (e.g., strict-technical-tone.md)
 ```
