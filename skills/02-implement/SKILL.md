@@ -35,7 +35,7 @@ metadata:
 3. **Spec check**: If the bug exposed an undocumented invariant or exit code trigger, update `docs/spec/` to lock in the expected behavior.
 
 ### 3. Verification gate
-- Run the stack's automated test suite and static analysis commands from [`rules/stack-routing.md`](../../rules/stack-routing.md) (`go test -race ./...`, `go vet ./...`, `./mvnw test`, `shellcheck`, `bats`, `ctest`).
+- Run the stack's automated test suite and static analysis commands from [`fragments/stack-routing.md`](../../fragments/stack-routing.md) (`go test -race ./...`, `go vet ./...`, `./mvnw test`, `shellcheck`, `bats`, `ctest`).
 - Do not claim completion until all automated tests and linters pass with zero warnings or errors.
 - After three failed fix/test attempts on the same blocker, stop and report `Blocked` with the failing check and observed cause.
 
@@ -45,7 +45,7 @@ Upon passing verification, output:
    | Acceptance criterion / edge case | Status | Verifying test / file |
    | :--- | :--- | :--- |
    | ... | Pass | `path/to/test_file:TestName` |
-2. **Proposed commit** (format from [`rules/git.md`](../../rules/git.md); keep `.issue-draft.md` untracked as the local work-unit spec—update it and notify the user if scope changes mid-flight so the remote issue can be synced, and remove it only after the PR merges; wait for user confirmation before executing mutating Git commands):
+2. **Proposed commit** (format from [`fragments/git.md`](../../fragments/git.md); keep `.issue-draft.md` untracked as the local work-unit spec—update it and notify the user if scope changes mid-flight so the remote issue can be synced, and remove it only after the PR merges; wait for user confirmation before executing mutating Git commands):
    ```bash
    git add <modified-files>
    git commit -m "<type>(<component>): <concise summary>"
