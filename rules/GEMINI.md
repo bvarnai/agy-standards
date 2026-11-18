@@ -1,8 +1,8 @@
 # Engineering & execution baseline
 
-@[Spec-driven principles](./spec-driven.md)
-@[Commit conventions](./git.md)
-@[Stack routing](./stack-routing.md)
+@[Spec-driven principles](../fragments/spec-driven.md)
+@[Commit conventions](../fragments/git.md)
+@[Stack routing](../fragments/stack-routing.md)
 
 ## Line endings & Markdown formatting
 - **LF line endings:** Always use Unix-style (`LF`) line endings when generating or modifying files, even when operating on Windows.

@@ -1,4 +1,4 @@
-# agy-standards
+# <img src="assets/logo.svg" width="28" height="28" alt="" align="absmiddle"> agy-standards
 
 [Google Antigravity](https://antigravity.google) (`agy`) plugin bundling global rules, lifecycle skills, and language-specific standards.
 
@@ -68,19 +68,17 @@ If `git-brx` is on `PATH`, the agent uses it for branches, syncing, and PRs. If 
 ```text
 agy-standards/
 ├── plugin.json                         # Native agy plugin manifest
-├── rules/                              # Universal always-on rules (auto-loaded by plugin)
-│   ├── GEMINI.md                       # Rule entrypoint (@-imports rules below + formatting & tool policy)
-│   ├── spec-driven.md                  # Plan -> Issue -> Spec & Code rules
-│   ├── git.md                          # Commit conventions
-│   └── stack-routing.md                # CWD marker -> domain standard routing table
-├── standards/                          # Stack-specific standards (routed via rules/stack-routing.md)
+├── assets/logo.svg                     # Monochrome plugin mark
+├── rules/                              # Universal always-on rule entrypoint
+│   └── GEMINI.md                       # @-imports fragments + formatting & tool policy
+├── standards/                          # Stack-specific standards (routed via fragments/stack-routing.md)
 │   ├── go-cli.md                       # Go CLI architecture, error wrapping & testing
 │   ├── java.md                         # Modern Java idioms, null-safety, Maven/Gradle verification
 │   ├── embedded.md                     # Embedded C/C++ deterministic memory, ISR safety, HAL
 │   └── shell.md                        # Bash/Shell naming (kebab-case CLI), safety, shellcheck & Bats
 ├── skills/                             # Lifecycle slash commands (/standards:00-spec .. /standards:05-release)
 │   └── <NN-skill>/SKILL.md             # Skill definition (+ templates/ where applicable)
-└── fragments/                          # Shared prompt constraints (e.g., strict-technical-tone.md)
+└── fragments/                          # Shared rule & prompt fragments (spec-driven, git, stack-routing, tone)
 ```
 
 ---
@@ -114,28 +112,36 @@ For concrete model picks and per-stage rationale, see [docs/models.md](./docs/mo
 
 ## Multi-stack domain rule routing
 
-Always-on [`rules/stack-routing.md`](rules/stack-routing.md) inspects the current working directory (`CWD`) during planning, issue drafting, implementation, and auditing to load the matching standard:
+Always-on [`fragments/stack-routing.md`](fragments/stack-routing.md) (imported by [`rules/GEMINI.md`](rules/GEMINI.md)) inspects the current working directory (`CWD`) during planning, issue drafting, implementation, and auditing to load the matching standard:
 
 - **Go**: Triggered by `go.mod` $\rightarrow$ enforces [standards/go-cli.md](standards/go-cli.md) (`go test -race ./...`, `go vet ./...`).
 - **Java**: Triggered by `pom.xml` / `build.gradle` $\rightarrow$ enforces [standards/java.md](standards/java.md) (`./mvnw test` / `./gradlew check`).
 - **Embedded C/C++**: Triggered by `CMakeLists.txt` / `platformio.ini` / `Kconfig` / `*.ld` $\rightarrow$ enforces [standards/embedded.md](standards/embedded.md) (deterministic memory, fixed-width types, ISR safety).
 - **Shell / Bash**: Triggered by `*.sh` / `*.bats` / `.bashrc.d/` $\rightarrow$ enforces [standards/shell.md](standards/shell.md) (`kebab-case` public interfaces, `shellcheck`, `bats`).
 
-To add a new stack (e.g. Rust, Python), create `standards/<stack>.md` and add one row to `rules/stack-routing.md`.
+To add a new stack (e.g. Rust, Python), create `standards/<stack>.md` and add one row to `fragments/stack-routing.md`.
 
 ---
 
 ## Configuring Antigravity (`agy`)
 
-`agy-standards` is packaged as a native Antigravity plugin (`plugin.json`). Linking the repository into `~/.gemini/config/plugins/` automatically registers both the global rules (`rules/`) and all lifecycle skills (`skills/`) with a single directory symlink:
+`agy-standards` is packaged as a native Antigravity plugin (`plugin.json`).
 
-```bash
-mkdir -p ~/.gemini/config/plugins
-ln -sfn "<path-to-agy-standards>" ~/.gemini/config/plugins/standards
-```
+- **Install from GitHub (`agy` >= 1.5.11):**
+
+  ```bash
+  agy plugin install https://github.com/bvarnai/agy-standards
+  ```
+
+- **Install from a local clone (symlink):** Linking the repository into `~/.gemini/config/plugins/` registers both the global rules (`rules/`) and all lifecycle skills (`skills/`) with a single directory symlink:
+
+  ```bash
+  mkdir -p ~/.gemini/config/plugins
+  ln -sfn "<path-to-agy-standards>" ~/.gemini/config/plugins/standards
+  ```
 
 > [!NOTE]
-> `agy` uses the symlink/directory name under `~/.gemini/config/plugins/` as the slash-command prefix. Linking as `standards` registers `/standards:00-spec`, `/standards:01-issue`, and so on. You can choose a shorter or custom prefix—such as `std`, `dev`, or `wf`—by changing the symlink name (e.g., `~/.gemini/config/plugins/std` gives `/std:00-spec`).
+> `agy` uses the plugin directory name under `~/.gemini/config/plugins/` as the slash-command prefix. Linking as `standards` registers `/standards:00-spec`, `/standards:01-issue`, and so on. You can choose a shorter or custom prefix—such as `std`, `dev`, or `wf`—by changing the symlink name (e.g., `~/.gemini/config/plugins/std` gives `/std:00-spec`).
 
 ---
 
