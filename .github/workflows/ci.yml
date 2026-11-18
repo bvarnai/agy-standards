@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    env:
+      BATS_LIB_PATH: /usr/lib/bats
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Bats and ShellCheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends bats bats-assert bats-support shellcheck
+
+      - name: Run Bats lint suite
+        run: bats tests/lint
+
+      - name: Run ShellCheck on test helpers
+        run: shellcheck tests/lint/helpers.bash
