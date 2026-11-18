@@ -4,7 +4,7 @@ Whenever planning (`--mode plan` / `/plan`), designing, drafting issues or specs
 
 | Marker in CWD / root | Language / domain | Standard to read & enforce | Verification commands |
 | :--- | :--- | :--- | :--- |
-| `go.mod` | Go CLI / backend | [`standards/go-cli.md`](../standards/go-cli.md) | `go test -race ./...`, `go vet ./...` |
+| `go.mod` | Go CLI / backend | [`standards/go.md`](../standards/go.md) | `go test -race ./...`, `go vet ./...` |
 | `pom.xml`, `build.gradle`, `build.gradle.kts` | Java (JVM) | [`standards/java.md`](../standards/java.md) | `./mvnw test` / `./gradlew check` |
 | `CMakeLists.txt`, `platformio.ini`, `Kconfig`, `*.ld`, `Makefile` (firmware) | Embedded C / C++ | [`standards/embedded.md`](../standards/embedded.md) | Target/host unit test runner, compiler zero-warning check |
 | `*.sh`, `*.bats`, `.bashrc.d/`, `bin/` (shell scripts) | Shell / Bash | [`standards/shell.md`](../standards/shell.md) | `shellcheck <files>`, `bats <tests>` |
