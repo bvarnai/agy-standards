@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-11-18
+
 ### Added
 - Native Antigravity plugin manifest (`plugin.json`) and monochrome mark (`assets/logo.svg`).
 - Always-on rule entrypoint (`rules/GEMINI.md`) importing spec-driven, commit convention, and stack-routing fragments (`fragments/`).
