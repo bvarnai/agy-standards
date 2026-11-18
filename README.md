@@ -21,14 +21,14 @@ Each coding or review step can then start in a fresh session and read what it ne
 
 ```mermaid
 flowchart LR
-    Spec["0. /00-spec<br/>(docs/spec/)"]
+    Spec["Spec<br/>(/standards:00-spec)"]
 
     subgraph Daily ["Daily development loop"]
-        Plan["Plan mode<br/>(/plan)"] --> Issue["1. /01-issue"] --> Code["2. /02-implement<br/>(Spec + Code + Tests)"]
+        Plan["Plan mode<br/>(/plan)"] --> Issue["Issue<br/>(/standards:01-issue)"] --> Code["Implement<br/>(/standards:02-implement)"]
     end
 
     subgraph Ship ["Release pipeline"]
-        Docs["3. /03-docs"] --> Audit["4. /04-audit"] --> Release["5. /05-release"]
+        Docs["Docs<br/>(/standards:03-docs)"] --> Audit["Audit<br/>(/standards:04-audit)"] --> Release["Release<br/>(/standards:05-release)"]
     end
 
     Spec -.->|"New project / module"| Plan
@@ -36,12 +36,12 @@ flowchart LR
     Code -->|"Ready to ship"| Docs
 ```
 
-1. **Write or update specs (`/00-spec`)**: Create initial `docs/spec/` files when starting a new project, adding a new module, or documenting existing code.
-2. **Daily development loop (`Plan` $\rightarrow$ `/01-issue` $\rightarrow$ `/02-implement`)**:
+1. **Write or update specs (`/standards:00-spec`)**: Create initial `docs/spec/` files when starting a new project, adding a new module, or documenting existing code.
+2. **Daily development loop (`Plan` $\rightarrow$ `/standards:01-issue` $\rightarrow$ `/standards:02-implement`)**:
    - **Plan (`--mode plan` / `/plan`)**: Discuss the problem and agree on the approach before touching code.
-   - **Create issue (`/01-issue`)**: Turn the agreed plan into a structured issue draft (`.issue-draft.md`) with acceptance criteria, edge cases, and test cases.
-   - **Implement (`/02-implement`)**: Create a topic branch, update `docs/spec/` and the code together, run tests and linters, and open a PR.
-3. **Release pipeline (`/03-docs` $\rightarrow$ `/04-audit` $\rightarrow$ `/05-release`)**: When ready to release, review user docs, run a read-only audit across specs, code, and tests, and cut the release tag.
+   - **Create issue (`/standards:01-issue`)**: Turn the agreed plan into a structured issue draft (`.issue-draft.md`) with acceptance criteria, edge cases, and test cases.
+   - **Implement (`/standards:02-implement`)**: Create a topic branch, update `docs/spec/` and the code together, run tests and linters, and open a PR.
+3. **Release pipeline (`/standards:03-docs` $\rightarrow$ `/standards:04-audit` $\rightarrow$ `/standards:05-release`)**: When ready to release, review user docs, run a read-only audit across specs, code, and tests, and cut the release tag.
 
 *(For a step-by-step example of how a full session looks in practice, see [docs/walkthrough.md](docs/walkthrough.md).)*
 
@@ -53,7 +53,7 @@ If `git-brx` is on `PATH`, the agent uses it for branches, syncing, and PRs. If 
 
 ### Working effectively
 
-- **Use plan mode as an interview.** Give a rough 2-sentence idea and ask `agy` to challenge the edge cases and trade-offs. Answering a few sharp questions triggers the same design thinking that used to happen while coding by hand. Then let `/00-spec` or `/01-issue` draft the Markdown from your answers.
+- **Use plan mode as an interview.** Give a rough 2-sentence idea and ask `agy` to challenge the edge cases and trade-offs. Answering a few sharp questions triggers the same design thinking that used to happen while coding by hand. Then let `/standards:00-spec` or `/standards:01-issue` draft the Markdown from your answers.
 - **Prototype when the design isn't clear yet.** Build a rough, throwaway version to learn what works, then write the real design into `docs/spec/`.
 - **Use the fast path for trivial changes.** Small fixes, doc edits, and dependency bumps don't need an issue.
 
@@ -83,28 +83,26 @@ agy-standards/
 
 ## Universal lifecycle skills
 
-Run these skills inside an interactive `agy` session, or invoke supported stages headlessly with `agy -p`:
+Run these skills inside an interactive `agy` session (assuming the plugin is linked as `standards`):
 
-### Core development & release lifecycle
-
-| Stage | Slash command | Mode & effort | CLI headless (`agy -p`) | Purpose |
-| :--- | :--- | :--- | :--- | :--- |
-| **0. Spec** | `/00-spec` | `plan`, `high` | — | Author or update technical specs in `docs/spec/`. |
-| **1. Issue** | `/01-issue` | `medium` | `agy --effort medium -p "/01-issue feat: add foo"` | Draft strict, spec-driven issues. |
-| **2. Implement** | `/02-implement` | `medium` | — | Implement features/fixes with spec sync & tests. |
-| **3. Docs** | `/03-docs` | `medium` | `agy --effort medium -p "/03-docs"` | Audit docs for tone and factual accuracy. |
-| **4. Audit** | `/04-audit` | `low` | `agy --effort low -p "/04-audit"` | Read-only pre-release readiness checklist. |
-| **5. Release** | `/05-release` | `low` | — | Prepare changelog/manifests and tag default branch. |
+| Stage | Slash command | Purpose |
+| :--- | :--- | :--- |
+| **0. Spec** | `/standards:00-spec` | Author or update technical specs in `docs/spec/`. |
+| **1. Issue** | `/standards:01-issue` | Draft strict, spec-driven issues. |
+| **2. Implement** | `/standards:02-implement` | Implement features/fixes with spec sync & tests. |
+| **3. Docs** | `/standards:03-docs` | Audit docs for tone and factual accuracy. |
+| **4. Audit** | `/standards:04-audit` | Read-only pre-release readiness checklist. |
+| **5. Release** | `/standards:05-release` | Prepare changelog/manifests and tag default branch. |
 
 ### Model & effort mental compass
 
-Start your `agy` session in **Build** (`medium`) as the default, then shift up to **Think** or down to **Mechanical** only when the stage calls for it:
+Start your `agy` session in **Build** (`medium`) as the default, then shift up to **Design** (`high`) or down to **Ship** (`low`) when the stage calls for it:
 
 | Gear | When to use | Stages | Model profile | Effort & mode |
 | :--- | :--- | :--- | :--- | :--- |
-| **1. Think** | Designing architecture, catching subtle drift, or stuck on a hard bug | `00-spec` | Strongest reasoning model | `high` *(+ `plan` for `00-spec`)* |
+| **1. Design** | Designing architecture, catching subtle drift, or stuck on a hard bug | `00-spec` | Strongest reasoning model | `high` *(+ `plan` for `00-spec`)* |
 | **2. Build** *(default)* | Day-to-day coding, tests, issue drafting, and doc reviews | `01-issue`, `02-implement`, `03-docs` | Fast, surgical coding model | `medium` |
-| **3. Mechanical** | Deterministic checklists and release steps where deep reasoning adds latency | `04-audit`, `05-release`, trivial `chore:` / `docs:` | Fastest available (or same model) | `low` |
+| **3. Ship** | Deterministic checklists and release steps where deep reasoning adds latency | `04-audit`, `05-release` | Fastest available (or same model) | `low` |
 
 For concrete model picks and per-stage rationale, see [docs/models.md](./docs/models.md).
 
@@ -131,6 +129,9 @@ To add a new stack (e.g. Rust, Python), create `standards/<stack>.md` and add on
 mkdir -p ~/.gemini/config/plugins
 ln -sfn "<path-to-agy-standards>" ~/.gemini/config/plugins/standards
 ```
+
+> [!NOTE]
+> `agy` uses the symlink/directory name under `~/.gemini/config/plugins/` as the slash-command prefix. Linking as `standards` registers `/standards:00-spec`, `/standards:01-issue`, and so on. You can choose a shorter or custom prefix—such as `std`, `dev`, or `wf`—by changing the symlink name (e.g., `~/.gemini/config/plugins/std` gives `/std:00-spec`).
 
 ---
 
