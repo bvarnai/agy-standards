@@ -117,9 +117,9 @@ For concrete model picks and per-stage rationale, see [docs/models.md](./docs/mo
 Always-on [`fragments/stack-routing.md`](fragments/stack-routing.md) (imported by [`rules/GEMINI.md`](rules/GEMINI.md)) inspects the current working directory (`CWD`) during planning, issue drafting, implementation, and auditing to load the matching standard:
 
 - **Go**: Triggered by `go.mod` $\rightarrow$ enforces [standards/go.md](standards/go.md) (`go test -race ./...`, `go vet ./...`).
-- **Java**: Triggered by `pom.xml` / `build.gradle` $\rightarrow$ enforces [standards/java.md](standards/java.md) (`./mvnw test` / `./gradlew check`).
-- **Embedded C/C++**: Triggered by `CMakeLists.txt` / `platformio.ini` / `Kconfig` / `*.ld` $\rightarrow$ enforces [standards/embedded.md](standards/embedded.md) (deterministic memory, fixed-width types, ISR safety).
-- **Shell / Bash**: Triggered by `*.sh` / `*.bats` / `.bashrc.d/` $\rightarrow$ enforces [standards/shell.md](standards/shell.md) (`kebab-case` public interfaces, `shellcheck`, `bats`).
+- **Java**: Triggered by `pom.xml` / `build.gradle` / `build.gradle.kts` $\rightarrow$ enforces [standards/java.md](standards/java.md) (`./mvnw test` / `./gradlew check`).
+- **Embedded C/C++**: Triggered by `CMakeLists.txt` / `platformio.ini` / `Kconfig` / `*.ld` / `Makefile` (firmware) $\rightarrow$ enforces [standards/embedded.md](standards/embedded.md) (deterministic memory, fixed-width types, ISR safety).
+- **Shell / Bash**: Triggered by `*.sh` / `*.bats` / `.bashrc.d/` / `bin/` $\rightarrow$ enforces [standards/shell.md](standards/shell.md) (`kebab-case` public interfaces, `shellcheck`, `bats`).
 
 To add a new stack (e.g. Rust, Python), create `standards/<stack>.md` and add one row to `fragments/stack-routing.md`.
 
