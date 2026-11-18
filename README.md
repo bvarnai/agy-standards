@@ -83,7 +83,7 @@ agy-standards/
 
 ## Universal lifecycle skills
 
-Run these skills inside an interactive `agy` session (namespaced by `name` in `plugin.json`):
+Run these skills inside an interactive `agy` session (assuming the plugin is linked as `standards`):
 
 | Stage | Slash command | Purpose |
 | :--- | :--- | :--- |
@@ -129,6 +129,9 @@ To add a new stack (e.g. Rust, Python), create `standards/<stack>.md` and add on
 mkdir -p ~/.gemini/config/plugins
 ln -sfn "<path-to-agy-standards>" ~/.gemini/config/plugins/standards
 ```
+
+> [!NOTE]
+> `agy` uses the symlink/directory name under `~/.gemini/config/plugins/` as the slash-command prefix. Linking as `standards` registers `/standards:00-spec`, `/standards:01-issue`, and so on. You can choose a shorter or custom prefix—such as `std`, `dev`, or `wf`—by changing the symlink name (e.g., `~/.gemini/config/plugins/std` gives `/std:00-spec`).
 
 ---
 
