@@ -97,10 +97,11 @@ check_links() {
 }
 
 # markdown_files
-# Prints every Markdown file that ships with the plugin.
+# Prints every Markdown file that ships with the plugin or its workspace skills.
 markdown_files() {
-  find "${REPO_ROOT}/rules" "${REPO_ROOT}/skills" "${REPO_ROOT}/standards" \
-    "${REPO_ROOT}/fragments" "${REPO_ROOT}/docs" -type f -name '*.md' -print
+  find "${REPO_ROOT}/rules" "${REPO_ROOT}/skills" "${REPO_ROOT}/.agents/skills" \
+    "${REPO_ROOT}/standards" "${REPO_ROOT}/fragments" "${REPO_ROOT}/docs" \
+    -type f -name '*.md' -print
   printf '%s\n' "${REPO_ROOT}/README.md"
 }
 
