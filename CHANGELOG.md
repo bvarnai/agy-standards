@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-20
+
+### Added
+- Python engineering standards (`standards/python.md`) and stack routing for `pyproject.toml`, `setup.py`, and `requirements.txt` (`#49`).
+- Workspace-local skill naming rule (`## Antigravity skill naming` in `rules/GEMINI.md`) and `<plugin-name>-` prefix lint enforcement in `tests/lint/frontmatter.bats` (`#51`).
+
+### Changed
+- Sorted model recommendations (`docs/models.md`) and `/standards-models` evaluation criteria chronologically by development lifecycle stage (`00-spec` through `05-release`) (`#51`).
+- Renamed workspace skills `.agents/skills/models` and `.agents/skills/harmonize` to `standards-models` and `standards-harmonize` (`#51`).
+- Aligned `tests/README.md` and `docs/philosophy.md` with workspace skill lint coverage and Python stack markers (`#53`).
+
 ## [0.1.0] - 2026-11-18
 
 ### Added
