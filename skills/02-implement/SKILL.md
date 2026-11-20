@@ -35,7 +35,7 @@ metadata:
 3. **Spec check**: If the bug exposed an undocumented invariant or exit code trigger, update `docs/spec/` to lock in the expected behavior.
 
 ### 3. Verification gate
-- Run the stack's automated test suite and static analysis commands from [`fragments/stack-routing.md`](../../fragments/stack-routing.md) (`go test -race ./...`, `go vet ./...`, `./mvnw test`, `shellcheck`, `bats`, `ctest`).
+- Run the stack's automated test suite and static analysis commands from [`fragments/stack-routing.md`](../../fragments/stack-routing.md) (`go test -race ./...`, `go vet ./...`, `ruff check .`, `pytest`, `./mvnw test`, `shellcheck`, `bats`, `ctest`).
 - Do not claim completion until all automated tests and linters pass with zero warnings or errors.
 - After three failed fix/test attempts on the same blocker, stop and report `Blocked` with the failing check and observed cause.
 
