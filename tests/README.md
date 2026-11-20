@@ -4,8 +4,8 @@ Static checks for the plugin's prompt files. They read files only: no agent runs
 
 | File | What it checks |
 | :--- | :--- |
-| `lint/frontmatter.bats` | Every `skills/*/SKILL.md` has YAML frontmatter with a non-empty `description` and a `name` that matches its directory. |
-| `lint/links.bats` | Every relative Markdown link and `@[…](…)` import in `rules/`, `skills/`, `standards/`, `fragments/`, `docs/`, and `README.md` resolves. Links inside code blocks and inline code are ignored. |
+| `lint/frontmatter.bats` | Every `skills/*/SKILL.md` and `.agents/skills/*/SKILL.md` has YAML frontmatter with a non-empty `description`, a `name` matching its directory, and a `<plugin-name>-` prefix on workspace skills. |
+| `lint/links.bats` | Every relative Markdown link and `@[…](…)` import in `rules/`, `skills/`, `.agents/skills/`, `standards/`, `fragments/`, `docs/`, and `README.md` resolves. Links inside code blocks and inline code are ignored. |
 | `lint/budget.bats` | `rules/GEMINI.md` plus its `@` imports stays within Antigravity's [24,000-byte rule cap](https://antigravity.google/docs/rules-workflows). Over the cap, Antigravity truncates the file. |
 | `lint/conventions.bats` | No commit template in `skills/` uses an issue number as its scope (`feat(#42): …`), no rule or skill calls the GitHub CLI (`gh …`), and every skill uses the canonical tone fragment reference. |
 | `lint/permissions.bats` | Every `skills/*/SKILL.md` declares exactly one `- **Permission:**` line, and no rule or skill proposes pushing `main` or `master`. |
