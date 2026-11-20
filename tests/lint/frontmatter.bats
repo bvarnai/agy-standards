@@ -16,7 +16,7 @@ write_skill() {
   local count=0
   local failures=0
 
-  for file in "${REPO_ROOT}"/skills/*/SKILL.md; do
+  for file in "${REPO_ROOT}"/skills/*/SKILL.md "${REPO_ROOT}"/.agents/skills/*/SKILL.md; do
     count=$((count + 1))
     check_frontmatter "${file}" "$(basename "$(dirname "${file}")")" \
       || failures=$((failures + 1))
@@ -24,6 +24,18 @@ write_skill() {
 
   assert [ "${count}" -gt 0 ]
   assert_equal "${failures}" 0
+}
+
+@test "every workspace skill is prefixed with the plugin name" {
+  local file
+  local dir_name
+  local plugin_name
+
+  plugin_name="$(jq -r '.name' "${REPO_ROOT}/plugin.json")"
+  for file in "${REPO_ROOT}"/.agents/skills/*/SKILL.md; do
+    dir_name="$(basename "$(dirname "${file}")")"
+    assert [ "${dir_name#"${plugin_name}"-}" != "${dir_name}" ]
+  done
 }
 
 @test "frontmatter check accepts a valid skill, including a quoted name" {
