@@ -28,14 +28,14 @@ Classify the available models across the five `agy-standards` execution profiles
 
 | Lifecycle stages | Task profile | Primary bottleneck | Key selection criteria | Default effort |
 | :--- | :--- | :--- | :--- | :--- |
-| `00-spec` | **1. Architecture & specs** | Multi-file synthesis & invariant design | Deepest reasoning, legacy reverse-engineering accuracy, long-context coherence. | `--mode plan --effort high` |
-| `01-issue`<br>`02-implement` | **2. Hands-on coding, TDD & tool loops** | 10–20 step tool-loop latency & surgical diff quality | Strict adherence to existing code style, minimal over-abstraction, fast `edit_file` $\rightarrow$ test cycles. | `--effort medium`<br>*(or `high` / `xhigh` for race/concurrency bugs)* |
-| `03-docs` | **3. Documentation tone & accuracy review** | Natural developer prose + technical verification | Avoids stiff AI phrasing while accurately cross-checking flags and examples against code. | `--effort medium` |
-| `04-audit` | **4. Pre-release & cross-artifact audit** | High-recall cross-checking (Spec $\leftrightarrow$ Code $\leftrightarrow$ Docs $\leftrightarrow$ CI) | Low false-positive rate, high attention across many files in a single read-only pass. | `--effort high`<br>*(or `medium` for branch diffs)* |
-| `05-release` | **5. Mechanical release cut** | Turnaround speed & strict procedure compliance | Fast, deterministic execution (SemVer bump, `CHANGELOG.md` update, Git tag staging) without re-auditing. | `--effort low` |
+| `00-spec`<br>`01-roadmap` | **1. Architecture, specs & epic slicing** | Multi-file synthesis, slicing & invariant design | Deepest reasoning, legacy reverse-engineering accuracy, long-context coherence, vertical slice decomposition. | `--mode plan --effort high` |
+| `02-issue`<br>`03-implement` | **2. Hands-on coding, TDD & tool loops** | 10–20 step tool-loop latency & surgical diff quality | Strict adherence to existing code style, minimal over-abstraction, fast `edit_file` $\rightarrow$ test cycles. | `--effort medium`<br>*(or `high` / `xhigh` for race/concurrency bugs)* |
+| `04-docs` | **3. Documentation tone & accuracy review** | Natural developer prose + technical verification | Avoids stiff AI phrasing while accurately cross-checking flags and examples against code. | `--effort medium` |
+| `05-audit` | **4. Pre-release & cross-artifact audit** | High-recall cross-checking (Spec $\leftrightarrow$ Code $\leftrightarrow$ Docs $\leftrightarrow$ CI) | Low false-positive rate, high attention across many files in a single read-only pass. | `--effort high`<br>*(or `medium` for branch diffs)* |
+| `06-release` | **5. Mechanical release cut** | Turnaround speed & strict procedure compliance | Fast, deterministic execution (SemVer bump, `CHANGELOG.md` update, Git tag staging) without re-auditing. | `--effort low` |
 
 ## Output contract
 1. **Model evaluation summary**:
    - List the evaluated models and any changes compared to the previous [docs/models.md](../../../docs/models.md) table (which model leads for **Deep reasoning / architecture** vs. **Hands-on coding / tool loops** vs. **Fast mechanical tasks**, and why).
 2. **Update [docs/models.md](../../../docs/models.md)**:
-   - Propose and apply the updated recommendations table in [docs/models.md](../../../docs/models.md) (sorted chronologically by development phase `00-spec` $\rightarrow$ `05-release`) upon user confirmation.
+   - Propose and apply the updated recommendations table in [docs/models.md](../../../docs/models.md) (sorted chronologically by development phase `00-spec` $\rightarrow$ `06-release`) upon user confirmation.

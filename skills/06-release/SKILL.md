@@ -1,18 +1,18 @@
 ---
-name: 05-release
-description: Calculate the next semantic version, prepare CHANGELOG.md and version manifests via the project's branch/PR flow, and tag the updated default branch. Activate when preparing a release or running /05-release.
+name: 06-release
+description: Calculate the next semantic version, prepare CHANGELOG.md and version manifests via the project's branch/PR flow, and tag the updated default branch. Activate when preparing a release or running /06-release.
 metadata:
-  lifecycle_stage: "05-release"
+  lifecycle_stage: "06-release"
   mode: "interactive"
   recommended_flags: "--effort low"
 ---
 
-# 05 — Release
+# 06 — Release
 
 ## Constraints & execution scope
 - **Tone:** Follow [strict-technical-tone.md](../../fragments/strict-technical-tone.md).
 - **Permission:** Edit `CHANGELOG.md` and version strings in build manifests in CWD.
-1. **No re-auditing**: Assume `/04-audit` is complete and all `P0` blockers are resolved. Do not re-audit documentation, CI workflows, governance files, or code quality.
+1. **No re-auditing**: Assume `/05-audit` is complete and all `P0` blockers are resolved. Do not re-audit documentation, CI workflows, governance files, or code quality.
 2. **Verification gate**: Never commit on or push the default branch. Never execute `git commit`, `git tag`, or `git push` without explicit user confirmation.
 
 ## Execution steps
@@ -28,7 +28,7 @@ metadata:
   - `PATCH`: Backwards-compatible bug fixes, performance improvements, or security patches.
 
 ### 2. Release readiness check & artifact updates
-Inspect `CHANGELOG.md` and project manifests (`pom.xml`, `build.gradle`, `package.json`, `Cargo.toml`, `pyproject.toml`, `CMakeLists.txt`). Leave build-time or tag-injected version fallbacks (e.g., `"dev"`) untouched.
+Inspect `CHANGELOG.md` and project manifests (`pom.xml`, `build.gradle`, `package.json`, `Cargo.toml`, `pyproject.toml`, `CMakeLists.txt`, `plugin.json`). Leave build-time or tag-injected version fallbacks (e.g., `"dev"`) untouched.
 
 - **If release artifacts need updating** (`CHANGELOG.md` does not yet have `## [X.Y.Z]` or still has entries under `## [Unreleased]`, or a manifest has an older hardcoded version):
   1. Run `date +%F` for `YYYY-MM-DD` (never infer the date).
@@ -39,7 +39,7 @@ Inspect `CHANGELOG.md` and project manifests (`pom.xml`, `build.gradle`, `packag
      - Update reference compare links at the bottom only if existing reference links are already present, matching their host and URL format. Leave compare links out if none exist or if this is a first release.
   4. **Stop without proposing a tag.** Output the calculated version and modified files, and instruct the user to:
      - Commit (`chore(release): prepare vX.Y.Z`) and merge via the project's branch/PR flow (if on the default branch, branch first via `git-brx` or the project's convention).
-     - Update the default branch and re-run `/05-release`.
+     - Update the default branch and re-run `/06-release`.
 
 - **If already ready** (`## [X.Y.Z]` already exists in `CHANGELOG.md` with an empty `## [Unreleased]`—even if the PR date differs from today—and manifests match `X.Y.Z`, or the repository has no hardcoded manifest versions or `CHANGELOG.md` to update):
   1. Do not treat `chore(release): prepare vX.Y.Z` as unreleased work.

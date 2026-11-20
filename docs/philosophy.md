@@ -39,13 +39,21 @@ If the agent hits a design question the spec doesn't answer, the intended behavi
 | Layer | Loaded | Purpose | Why it's separate |
 | :--- | :--- | :--- | :--- |
 | **Rules** (`rules/`) | Always | Workflow, commit conventions, tool and approval policy | Kept small because they cost context on every turn |
-| **Skills** (`skills/`) | When invoked (`/standards:00-spec` … `/standards:05-release`) | One lifecycle step each | Each step runs in its own session with its own effort level |
+| **Skills** (`skills/`) | When invoked (`/standards:00-spec` … `/standards:06-release`) | One lifecycle step each | Each step runs in its own session with its own effort level |
 | **Standards** (`standards/`) | When a stack marker matches (`go.mod`, `pyproject.toml`, `pom.xml`, …) | Language-specific idioms and verification commands | A Go project doesn't need Java rules in context |
 | **Fragments** (`fragments/`) | Imported by rules or referenced by skills | Shared constraints such as tone | Written once, reused everywhere |
 
 [`git-brx`](https://github.com/bvarnai/git-brx) is a separate, optional companion for your side of the workflow. It brings its own branching conventions and turns them into concrete commands, so you don't have to speak fluent Git. Without it, the agent follows the project's own conventions.
 
-Commits and branches are separate concerns. A commit records one piece of work, and it's usually written by the agent. A branch collects those pieces and decides how they're synced and merged. Which branch a piece of work belongs on is a human call, which is why `git brx create` asks for the branch type explicitly.
+Commits and branches are separate concerns. A commit records one piece of work, and it's usually written by the agent. A branch collects those pieces and decides how they're synced and merged. Which branch a piece of work belongs on is a human call, which is why `git brx create` asks for the branch type explicitly:
+
+| Branch type | Unit of work | `git brx sync` | Merge to `main` (`git brx review`) | Guideline |
+| :--- | :--- | :--- | :--- | :--- |
+| **`issue/*`** | Single PR-sized task or roadmap slice | Rebase | Squash (1 commit) | Default for Day-2 fixes, docs, and individual epic slices |
+| **`feature/*`** | Single cohesive PR with collaborators | Merge | Squash (1 commit) | Only when multiple people commit directly to one PR |
+| **`epic/*`** | Multi-PR milestone (parallel integration) | Merge | True merge (non-squash) | Greenfield bootstraps (`v0.1.0`) and multi-PR epics |
+
+For greenfield builds or multi-PR epics, an `epic/*` integration branch paired with a transient `docs/roadmap.md` breaks the full specification into small, reviewable child `issue/*` PRs—preventing giant unreviewable branches without leaving planning clutter in `main`.
 
 ## Write it down first
 

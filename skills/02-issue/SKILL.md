@@ -1,17 +1,18 @@
 ---
-name: 01-issue
-description: Strictly draft issues using the mandatory issue template with clear problem context, acceptance criteria, edge cases, and verification plans, saving the raw Markdown to .issue-draft.md. Activate whenever asked to write, draft, or generate an issue (feat:, fix:, refactor:, perf:, docs:, test:, ci:, build:, chore:) or running /01-issue.
+name: 02-issue
+description: Strictly draft issues using the mandatory issue template with clear problem context, acceptance criteria, edge cases, and verification plans, saving the raw Markdown to .issue-draft.md. Activate whenever asked to write, draft, or generate an issue (feat:, fix:, refactor:, perf:, docs:, test:, ci:, build:, chore:) or running /02-issue.
 metadata:
-  lifecycle_stage: "01-issue"
+  lifecycle_stage: "02-issue"
   mode: "interactive"
   recommended_flags: "--effort medium"
 ---
 
-# 01 — Issue drafting
+# 02 — Issue drafting
 
 ## Constraints
 - **Tone:** Follow [strict-technical-tone.md](../../fragments/strict-technical-tone.md).
 - **Permission:** Create or overwrite `.issue-draft.md` in CWD.
+- **Epic slice context:** When `docs/roadmap.md` exists on an `epic/<E>` branch, read the target `Pending` slice and the exact `docs/spec/` sections and `TC-*` scenarios it cites; scope the draft to a single reviewable PR targeting `epic/<E>`, and remind the user to label child slice tickets `enhancement` (or `bug` / `feature`) rather than `epic`.
 - **Root-cause triage for `fix:` issues**: When drafting a bug/regression issue (`fix:`), inspect the relevant source files first to identify the concrete root cause, reproduction conditions, and whether `docs/spec/` requires an edge-case or error-matrix update.
 - **Proportionality**: Scale depth to complexity. For trivial `chore:` or `docs:` issues, keep design bullets minimal and explicitly mark `Edge cases & failure modes` as `None (trivial change)` rather than inventing filler.
 - **Pre-flight ambiguity check**: If the request lacks critical architectural context, ask at most 1–3 concise clarifying questions before generating the issue.
@@ -27,7 +28,7 @@ metadata:
 Format the issue using the template below in GitHub Flavored Markdown:
 
 ```markdown
-### [Type]: Short title (matching Git conventions)
+### <type>(<component>): <short title>
 
 **Problem / context**
 <!-- Current state, root cause or motivation, and why this change is needed now. -->

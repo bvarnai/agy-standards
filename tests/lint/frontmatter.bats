@@ -78,3 +78,16 @@ write_skill() {
   assert_failure
   assert_output --partial "not closed"
 }
+
+@test "frontmatter check accepts matching lifecycle_stage" {
+  write_skill $'---\nname: demo\ndescription: Does a thing.\nmetadata:\n  lifecycle_stage: "demo"\n---\n# Demo'
+  run check_frontmatter "${BATS_TEST_TMPDIR}/demo/SKILL.md" demo
+  assert_success
+}
+
+@test "frontmatter check rejects a mismatched lifecycle_stage" {
+  write_skill $'---\nname: demo\ndescription: Does a thing.\nmetadata:\n  lifecycle_stage: "other"\n---\n# Demo'
+  run check_frontmatter "${BATS_TEST_TMPDIR}/demo/SKILL.md" demo
+  assert_failure
+  assert_output --partial "lifecycle_stage"
+}

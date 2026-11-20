@@ -27,27 +27,32 @@ Each coding or review step can then start in a fresh session and read what it ne
 
 ```mermaid
 flowchart LR
-    Spec["Spec<br/>(/standards:00-spec)"]
+    subgraph Upfront ["Bootstrap & epic design (as needed)"]
+        Spec["00. Spec (/standards:00-spec)"] -.->|"Multi-PR epic"| Roadmap["01. Roadmap (/standards:01-roadmap)"]
+    end
 
     subgraph Daily ["Daily development loop"]
-        Plan["Plan mode<br/>(/plan)"] --> Issue["Issue<br/>(/standards:01-issue)"] --> Code["Implement<br/>(/standards:02-implement)"]
+        Plan["Plan (/plan)"] --> Issue["02. Issue (/standards:02-issue)"] --> Impl["03. Implement (/standards:03-implement)"]
     end
 
     subgraph Ship ["Release pipeline"]
-        Docs["Docs<br/>(/standards:03-docs)"] --> Audit["Audit<br/>(/standards:04-audit)"] --> Release["Release<br/>(/standards:05-release)"]
+        Docs["04. Docs (/standards:04-docs)"] --> Audit["05. Audit (/standards:05-audit)"] --> Release["06. Release (/standards:06-release)"]
     end
 
     Spec -.->|"New project / module"| Plan
-    Code -->|"Next issue"| Plan
-    Code -->|"Ready to ship"| Docs
+    Roadmap -.->|"Next slice"| Issue
+    Impl -->|"Next issue / slice"| Plan
+    Impl -->|"Ready to ship"| Docs
 ```
 
-1. **Write or update specs (`/standards:00-spec`)**: Create initial `docs/spec/` files when starting a new project, adding a new module, or documenting existing code.
-2. **Daily development loop (`Plan` $\rightarrow$ `/standards:01-issue` $\rightarrow$ `/standards:02-implement`)**:
-   - **Plan (`--mode plan` / `/plan`)**: Discuss the problem and agree on the approach before touching code.
-   - **Create issue (`/standards:01-issue`)**: Turn the agreed plan into a structured issue draft (`.issue-draft.md`) with acceptance criteria, edge cases, and test cases.
-   - **Implement (`/standards:02-implement`)**: Create a topic branch, update `docs/spec/` and the code together, run tests and linters, and open a PR.
-3. **Release pipeline (`/standards:03-docs` $\rightarrow$ `/standards:04-audit` $\rightarrow$ `/standards:05-release`)**: When ready to release, review user docs, run a read-only audit across specs, code, and tests, and cut the release tag.
+1. **Bootstrap & epic design (`/standards:00-spec`, `/standards:01-roadmap`, as needed)**:
+   - **Write or update specs (`/standards:00-spec`)**: Create or update `docs/spec/` when starting a new project, adding a module, or documenting existing code.
+   - **Slice large work (`/standards:01-roadmap`)**: When work spans multiple PRs (greenfield bootstraps or epics), partition `docs/spec/` into vertical slices in a transient `docs/roadmap.md` on an `epic/<E>` integration branch.
+2. **Daily development loop (`Plan` $\rightarrow$ `/standards:02-issue` $\rightarrow$ `/standards:03-implement`)**:
+   - **Plan (`--mode plan` / `/plan`)**: Discuss the problem and agree on the approach before touching code (or select the next `Pending` roadmap slice when inside an epic).
+   - **Create issue (`/standards:02-issue`)**: Turn the agreed plan or roadmap slice into a structured issue draft (`.issue-draft.md`) with acceptance criteria, edge cases, and test cases.
+   - **Implement (`/standards:03-implement`)**: Create a topic branch (`issue/<N>` off `main`, or off `epic/<E>` for epic slices), update `docs/spec/` and the code together, run tests and linters, and open a PR. Once all epic slices merge, remove `docs/roadmap.md` and true-merge `epic/<E>` into `main`.
+3. **Release pipeline (`/standards:04-docs` $\rightarrow$ `/standards:05-audit` $\rightarrow$ `/standards:06-release`)**: When ready to release, review user docs, run a read-only audit across specs, code, and tests, and cut the release tag.
 
 *(For a step-by-step example of how a full session looks in practice, see [docs/walkthrough.md](docs/walkthrough.md).)*
 
@@ -59,7 +64,7 @@ If `git-brx` is on `PATH`, the agent uses it for branches, syncing, and PRs. If 
 
 ### Working effectively
 
-- **Use plan mode as an interview.** Give a rough 2-sentence idea and ask `agy` to challenge the edge cases and trade-offs. Answering a few sharp questions triggers the same design thinking that used to happen while coding by hand. Then let `/standards:00-spec` or `/standards:01-issue` draft the Markdown from your answers.
+- **Use plan mode as an interview.** Give a rough 2-sentence idea and ask `agy` to challenge the edge cases and trade-offs. Answering a few sharp questions triggers the same design thinking that used to happen while coding by hand. Then let `/standards:00-spec` or `/standards:02-issue` draft the Markdown from your answers.
 - **Prototype when the design isn't clear yet.** Build a rough, throwaway version to learn what works, then write the real design into `docs/spec/`.
 - **Use the fast path for trivial changes.** Small fixes, doc edits, and dependency bumps don't need an issue.
 
@@ -79,7 +84,7 @@ agy-standards/
 │   ├── java.md                         # Modern Java idioms, null-safety, Maven/Gradle verification
 │   ├── embedded.md                     # Embedded C/C++ deterministic memory, ISR safety, HAL
 │   └── shell.md                        # Bash/Shell naming (kebab-case CLI), safety, shellcheck & Bats
-├── skills/                             # Lifecycle slash commands (/standards:00-spec .. /standards:05-release)
+├── skills/                             # Lifecycle slash commands (/standards:00-spec .. /standards:06-release)
 │   └── <NN-skill>/SKILL.md             # Skill definition (+ templates/ where applicable)
 └── fragments/                          # Shared rule & prompt fragments (spec-driven, git, stack-routing, tone)
 ```
@@ -90,14 +95,15 @@ agy-standards/
 
 Run these skills inside an interactive `agy` session (assuming the plugin is linked as `standards`):
 
-| Stage | Slash command | Purpose |
-| :--- | :--- | :--- |
-| **0. Spec** | `/standards:00-spec` | Author or update technical specs in `docs/spec/`. |
-| **1. Issue** | `/standards:01-issue` | Draft strict, spec-driven issues. |
-| **2. Implement** | `/standards:02-implement` | Implement features/fixes with spec sync & tests. |
-| **3. Docs** | `/standards:03-docs` | Audit docs for tone and factual accuracy. |
-| **4. Audit** | `/standards:04-audit` | Read-only pre-release readiness checklist. |
-| **5. Release** | `/standards:05-release` | Prepare changelog/manifests and tag default branch. |
+| Stage | Slash command | When to run | Purpose |
+| :--- | :--- | :--- | :--- |
+| **0. Spec** | `/standards:00-spec` | New project or module | Author or update technical specs in `docs/spec/`. |
+| **1. Roadmap** | `/standards:01-roadmap` | Greenfield or multi-PR epic | Partition `docs/spec/` into vertical slices on `epic/*`. |
+| **2. Issue** | `/standards:02-issue` | Every non-trivial PR | Draft strict, spec-driven issues. |
+| **3. Implement** | `/standards:03-implement` | Every PR | Implement features/fixes with spec sync & tests. |
+| **4. Docs** | `/standards:04-docs` | Before release | Audit docs for tone and factual accuracy. |
+| **5. Audit** | `/standards:05-audit` | Before release | Read-only pre-release readiness checklist. |
+| **6. Release** | `/standards:06-release` | When cutting a tag | Prepare changelog/manifests and tag default branch. |
 
 ### Model & effort mental compass
 
@@ -105,9 +111,9 @@ Start your `agy` session in **Build** (`medium`) as the default, then shift up t
 
 | Gear | When to use | Stages | Model profile | Effort & mode |
 | :--- | :--- | :--- | :--- | :--- |
-| **1. Design** | Designing architecture, catching subtle drift, or stuck on a hard bug | `00-spec` | Strongest reasoning model | `high` *(+ `plan` for `00-spec`)* |
-| **2. Build** *(default)* | Day-to-day coding, tests, issue drafting, and doc reviews | `01-issue`, `02-implement`, `03-docs` | Fast, surgical coding model | `medium` |
-| **3. Ship** | Deterministic checklists and release steps where deep reasoning adds latency | `04-audit`, `05-release` | Fastest available (or same model) | `low` |
+| **1. Design** | Designing architecture, slicing epics, catching subtle drift, or stuck on a hard bug | `00-spec`, `01-roadmap` | Strongest reasoning model | `high` *(+ `plan` for `00-spec`, `01-roadmap`)* |
+| **2. Build** *(default)* | Day-to-day coding, tests, issue drafting, and doc reviews | `02-issue`, `03-implement`, `04-docs` | Fast, surgical coding model | `medium` |
+| **3. Ship** | Deterministic checklists and release steps where deep reasoning adds latency | `05-audit`, `06-release` | Fastest available (or same model) | `low` |
 
 For concrete model picks and per-stage rationale, see [docs/models.md](./docs/models.md).
 

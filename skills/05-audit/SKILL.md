@@ -1,13 +1,13 @@
 ---
-name: 04-audit
-description: Execute a read-only pre-release readiness audit across code, specifications, user documentation, test suites, and CI/release pipelines to identify P0 blockers before tagging. Activate before running /05-release or /04-audit.
+name: 05-audit
+description: Execute a read-only pre-release readiness audit across code, specifications, user documentation, test suites, and CI/release pipelines to identify P0 blockers before tagging. Activate before running /06-release or /05-audit.
 metadata:
-  lifecycle_stage: "04-audit"
+  lifecycle_stage: "05-audit"
   mode: "interactive | one-shot"
   recommended_flags: "--effort low"
 ---
 
-# 04 — Pre-release audit
+# 05 — Pre-release audit
 
 ## Constraints & role
 - **Tone:** Follow [strict-technical-tone.md](../../fragments/strict-technical-tone.md).
@@ -19,11 +19,12 @@ metadata:
 
 ### 1. Working tree, build & test verification
 - Verify `git status` is clean (no uncommitted modifications or untracked build artifacts) and the active branch is the intended release target.
+- Verify no transient `docs/roadmap.md` remains on the release branch (if auditing an `epic/*` branch before merging to the default branch, flag any remaining `Pending` slices in `docs/roadmap.md` as a `P0` blocker).
 - Execute the full automated test suite (with race detection / memory checks enabled) and static analysis/linters (`go vet`, `ruff check`, `mypy`, `shellcheck`, compiler warnings).
 
 ### 2. Manifest, version & sanity alignment
 - Verify version strings, dependency matrices, and minimum runtime/compiler versions align across build manifests (`go.mod`, `pyproject.toml`, `pom.xml`, `CMakeLists.txt`), `.github/workflows/`, and `README.md`.
-- Flag broken links, dead references, or obvious stale flags/examples without re-auditing documentation prose (owned by `/03-docs`) or re-reading every source file.
+- Flag broken links, dead references, or obvious stale flags/examples without re-auditing documentation prose (owned by `/04-docs`) or re-reading every source file.
 
 ### 3. Release governance, artifacts & CI/CD pipelines
 - Verify the presence and completeness of standard repository and release files: `LICENSE`, `CHANGELOG.md` (with unreleased changes cataloged), `CONTRIBUTING.md` (when applicable), `.gitignore`, `.gitattributes`, and (if used by the repository) the `## 🤖 AI Disclosure` footer in root `README.md`.

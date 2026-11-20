@@ -1,13 +1,13 @@
 ---
-name: 03-docs
-description: Audit and refine user guides, READMEs, and reference documentation for pragmatic developer-to-developer tone, plain active English, sentence-case headings, factual spec/codebase accuracy, and link integrity. Activate when reviewing documentation or running /03-docs.
+name: 04-docs
+description: Audit and refine user guides, READMEs, and reference documentation for pragmatic developer-to-developer tone, plain active English, sentence-case headings, factual spec/codebase accuracy, and link integrity. Activate when reviewing documentation or running /04-docs.
 metadata:
-  lifecycle_stage: "03-docs"
+  lifecycle_stage: "04-docs"
   mode: "interactive"
   recommended_flags: "--effort medium"
 ---
 
-# 03 — Documentation review
+# 04 — Documentation review
 
 ## Constraints & voice separation
 - **Tone:** Follow [strict-technical-tone.md](../../fragments/strict-technical-tone.md).
@@ -17,7 +17,7 @@ metadata:
 ## Scope & ground truth separation
 1. **Target files (to audit & refine)**:
    - If specific file paths are passed as arguments, review only those files.
-   - Otherwise, inspect `README.md`, `CONTRIBUTING.md`, and user/reference documentation under `docs/` (such as `docs/user-guide/**/*.md`), **excluding** `docs/spec/`.
+   - Otherwise, inspect `README.md`, `CONTRIBUTING.md`, and user/reference documentation under `docs/` (such as `docs/user-guide/**/*.md`), **excluding** `docs/spec/` and transient `docs/roadmap.md`.
 2. **Ground truth (read-only reference)**:
    - Use `docs/spec/` (`global.md` and `<unit>.md`) and the codebase implementation as read-only ground truth to verify technical accuracy. Never rewrite `docs/spec/` during a documentation tone review.
 

@@ -46,3 +46,7 @@ When authoring specifications for non-CLI domains without a dedicated file in `t
 4. **Execution boundaries, concurrency & resource/ISR safety**
 5. **Package / module architecture & shared domain models**
 6. **Module registry & verification plan**
+
+## Next step
+- **Greenfield bootstrap or multi-PR epic:** Proceed to `/01-roadmap` to partition `docs/spec/` into dependency-ordered vertical slices on an `epic/*` integration branch.
+- **Routine single-PR change:** Proceed to `/plan` and `/02-issue` to draft the work-unit issue.

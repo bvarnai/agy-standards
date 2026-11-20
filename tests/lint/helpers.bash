@@ -44,6 +44,15 @@ check_frontmatter() {
     return 1
   fi
 
+  local lifecycle_stage
+  lifecycle_stage="$(sed -n 's/^[[:space:]]*lifecycle_stage:[[:space:]]*//p' <<<"${frontmatter}" \
+    | head -n 1 \
+    | sed -e 's/[[:space:]]*$//' -e "s/^[\"']\\(.*\\)[\"']\$/\\1/")"
+  if [[ -n "${lifecycle_stage}" && "${lifecycle_stage}" != "${expected_name}" ]]; then
+    echo "${file}: lifecycle_stage '${lifecycle_stage}' does not match directory '${expected_name}'" >&2
+    return 1
+  fi
+
   if ! grep -q '^description:[[:space:]]*[^[:space:]]' <<<"${frontmatter}"; then
     echo "${file}: frontmatter has no description" >&2
     return 1
