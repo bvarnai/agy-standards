@@ -19,10 +19,10 @@ metadata:
 
 ### 1. Working tree, build & test verification
 - Verify `git status` is clean (no uncommitted modifications or untracked build artifacts) and the active branch is the intended release target.
-- Execute the full automated test suite (with race detection / memory checks enabled) and static analysis/linters (`go vet`, `shellcheck`, compiler warnings).
+- Execute the full automated test suite (with race detection / memory checks enabled) and static analysis/linters (`go vet`, `ruff check`, `mypy`, `shellcheck`, compiler warnings).
 
 ### 2. Manifest, version & sanity alignment
-- Verify version strings, dependency matrices, and minimum runtime/compiler versions align across build manifests (`go.mod`, `pom.xml`, `CMakeLists.txt`), `.github/workflows/`, and `README.md`.
+- Verify version strings, dependency matrices, and minimum runtime/compiler versions align across build manifests (`go.mod`, `pyproject.toml`, `pom.xml`, `CMakeLists.txt`), `.github/workflows/`, and `README.md`.
 - Flag broken links, dead references, or obvious stale flags/examples without re-auditing documentation prose (owned by `/03-docs`) or re-reading every source file.
 
 ### 3. Release governance, artifacts & CI/CD pipelines
