@@ -27,22 +27,21 @@ Each coding or review step can then start in a fresh session and read what it ne
 
 ```mermaid
 flowchart LR
-    subgraph Upfront ["Bootstrap & epic design (as needed)"]
-        Spec["00. Spec (/standards:00-spec)"] -.->|"Multi-PR epic"| Roadmap["01. Roadmap (/standards:01-roadmap)"]
+    subgraph Upfront ["Bootstrap & epic design"]
+        Spec["Spec<br/>(/standards:00-spec)"] -.-> Roadmap["Roadmap<br/>(/standards:01-roadmap)"]
     end
 
     subgraph Daily ["Daily development loop"]
-        Plan["Plan (/plan)"] --> Issue["02. Issue (/standards:02-issue)"] --> Impl["03. Implement (/standards:03-implement)"]
+        Plan["Plan mode<br/>(/plan)"] --> Issue["Issue<br/>(/standards:02-issue)"] --> Code["Implement<br/>(/standards:03-implement)"]
     end
 
     subgraph Ship ["Release pipeline"]
-        Docs["04. Docs (/standards:04-docs)"] --> Audit["05. Audit (/standards:05-audit)"] --> Release["06. Release (/standards:06-release)"]
+        Docs["Docs<br/>(/standards:04-docs)"] --> Audit["Audit<br/>(/standards:05-audit)"] --> Release["Release<br/>(/standards:06-release)"]
     end
 
-    Spec -.->|"New project / module"| Plan
-    Roadmap -.->|"Next slice"| Issue
-    Impl -->|"Next issue / slice"| Plan
-    Impl -->|"Ready to ship"| Docs
+    Roadmap -.->|"New project / epic"| Plan
+    Code -->|"Next issue"| Plan
+    Code -->|"Ready to ship"| Docs
 ```
 
 1. **Bootstrap & epic design (`/standards:00-spec`, `/standards:01-roadmap`, as needed)**:
