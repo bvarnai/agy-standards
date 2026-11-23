@@ -46,7 +46,7 @@ flowchart LR
 
 1. **Upfront design (`/standards:00-spec`, `/standards:01-roadmap`, as needed)**:
    - **Write or update specs (`/standards:00-spec`)**: Create or update `docs/spec/` when starting a new project, adding a module, or documenting existing code.
-   - **Slice large work (`/standards:01-roadmap`)**: When work spans multiple PRs (new projects or multi-PR epics), partition `docs/spec/` into vertical slices in a transient `docs/roadmap.md` on an `epic/<E>` integration branch.
+   - **Slice a large spec (`/standards:01-roadmap`)**: When a new project or epic spec is too large for one PR, split `docs/spec/` into ordered vertical slices (`docs/roadmap.md` on an `epic/<E>` integration branch), then run the **Daily development loop** once per slice.
 2. **Daily development loop (`Plan` $\rightarrow$ `/standards:02-issue` $\rightarrow$ `/standards:03-implement`)**:
    - **Plan (`--mode plan` / `/plan`)**: Discuss the problem and agree on the approach before touching code (or select the next `Pending` roadmap slice when inside an epic).
    - **Create issue (`/standards:02-issue`)**: Turn the agreed plan or roadmap slice into a structured issue draft (`.issue-draft.md`) with acceptance criteria, edge cases, and test cases.
@@ -96,9 +96,9 @@ Run these skills inside an interactive `agy` session (assuming the plugin is lin
 
 | Stage | Slash command | When to run | Purpose |
 | :--- | :--- | :--- | :--- |
-| **0. Spec** | `/standards:00-spec` | New project or module | Author or update technical specs in `docs/spec/`. |
-| **1. Roadmap** | `/standards:01-roadmap` | New project or multi-PR epic | Partition `docs/spec/` into vertical slices on `epic/*`. |
-| **2. Issue** | `/standards:02-issue` | Every non-trivial PR | Draft strict, spec-driven issues. |
+| **0. Spec** | `/standards:00-spec` | New project, module, or big change | Author or update technical specs in `docs/spec/`. |
+| **1. Roadmap** | `/standards:01-roadmap` | Spec too large for a single PR | Partition `docs/spec/` into vertical slices on `epic/*`. |
+| **2. Issue** | `/standards:02-issue` | Each PR (standalone or slice) | Draft strict, spec-driven issues. |
 | **3. Implement** | `/standards:03-implement` | Every PR | Implement features/fixes with spec sync & tests. |
 | **4. Docs** | `/standards:04-docs` | Before release | Audit docs for tone and factual accuracy. |
 | **5. Audit** | `/standards:05-audit` | Before release | Read-only pre-release readiness checklist. |
