@@ -45,15 +45,7 @@ If the agent hits a design question the spec doesn't answer, the intended behavi
 
 [`git-brx`](https://github.com/bvarnai/git-brx) is a separate, optional companion for your side of the workflow. It brings its own branching conventions and turns them into concrete commands, so you don't have to speak fluent Git. Without it, the agent follows the project's own conventions.
 
-Commits and branches are separate concerns. A commit records one piece of work, and it's usually written by the agent. A branch collects those pieces and decides how they're synced and merged. Which branch a piece of work belongs on is a human call, which is why `git brx create` asks for the branch type explicitly:
-
-| Branch type | Unit of work | `git brx sync` | Merge to `main` (`git brx review`) | Guideline |
-| :--- | :--- | :--- | :--- | :--- |
-| **`issue/*`** | Single PR-sized task or roadmap slice | Rebase | Squash (1 commit) | Default for Day-2 fixes, docs, and individual epic slices |
-| **`feature/*`** | Single cohesive PR with collaborators | Merge | Squash (1 commit) | Only when multiple people commit directly to one PR |
-| **`epic/*`** | Multi-PR milestone (parallel integration) | Merge | True merge (non-squash) | New projects (`v0.1.0`) and multi-PR epics |
-
-For new projects or multi-PR epics, an `epic/*` integration branch paired with a transient `docs/roadmap.md` breaks the full specification into small, reviewable child `issue/*` PRs—preventing giant unreviewable branches without leaving planning clutter in `main`.
+Commits and branches are separate concerns. A commit records one piece of work, and it's usually written by the agent. A branch collects those pieces and decides how they're synced and merged. For a new project or a large spec change that doesn't fit in a single PR, `/standards:01-roadmap` uses an integration branch with a transient `docs/roadmap.md` index so each slice lands as a small, reviewable child PR before the integration branch merges into `main`.
 
 ## Write it down first
 

@@ -46,11 +46,11 @@ flowchart LR
 
 1. **Upfront design (`/standards:00-spec`, `/standards:01-roadmap`, as needed)**:
    - **Write or update specs (`/standards:00-spec`)**: Create or update `docs/spec/` when starting a new project, adding a module, designing a large feature/change, or documenting existing code.
-   - **Slice a large spec (`/standards:01-roadmap`)**: When a new or updated spec is too large for one PR, split the work into ordered vertical slices (`docs/roadmap.md` on an `epic/<E>` integration branch), then run the **Daily development loop** once per slice.
+   - **Slice a large spec (`/standards:01-roadmap`)**: When a new or updated spec is too large for one PR, split the work into ordered vertical slices (`docs/roadmap.md` on an integration branch), then run the **Daily development loop** once per slice.
 2. **Daily development loop (`Plan` $\rightarrow$ `/standards:02-issue` $\rightarrow$ `/standards:03-implement`)**:
    - **Plan (`--mode plan` / `/plan`)**: Discuss the problem and agree on the approach before touching code (or select the next `Pending` roadmap slice when inside an epic).
    - **Create issue (`/standards:02-issue`)**: Turn the agreed plan or roadmap slice into a structured issue draft (`.issue-draft.md`) with acceptance criteria, edge cases, and test cases.
-   - **Implement (`/standards:03-implement`)**: Create a topic branch (`issue/<N>` off `main`, or off `epic/<E>` for epic slices), update `docs/spec/` and the code together, run tests and linters, and open a PR. Once all epic slices merge, remove `docs/roadmap.md` and true-merge `epic/<E>` into `main`.
+   - **Implement (`/standards:03-implement`)**: Create a topic branch (off the default branch, or off the integration branch for epic slices), update `docs/spec/` and the code together, run tests and linters, and open a PR. Once all epic slices merge, remove `docs/roadmap.md` and merge the integration branch into `main`.
 3. **Release pipeline (`/standards:04-docs` $\rightarrow$ `/standards:05-audit` $\rightarrow$ `/standards:06-release`)**: When ready to release, review user docs, run a read-only audit across specs, code, and tests, and cut the release tag.
 
 *(For a step-by-step example of how a full session looks in practice, see [docs/walkthrough.md](docs/walkthrough.md).)*
@@ -97,7 +97,7 @@ Run these skills inside an interactive `agy` session (assuming the plugin is lin
 | Stage | Slash command | When to run | Purpose |
 | :--- | :--- | :--- | :--- |
 | **0. Spec** | `/standards:00-spec` | New project, module, or big change | Author or update technical specs in `docs/spec/`. |
-| **1. Roadmap** | `/standards:01-roadmap` | Spec too large for a single PR | Partition `docs/spec/` into vertical slices on `epic/*`. |
+| **1. Roadmap** | `/standards:01-roadmap` | Spec too large for a single PR | Partition `docs/spec/` into vertical slices on an integration branch. |
 | **2. Issue** | `/standards:02-issue` | Each PR (standalone or slice) | Draft strict, spec-driven issues. |
 | **3. Implement** | `/standards:03-implement` | Every PR | Implement features/fixes with spec sync & tests. |
 | **4. Docs** | `/standards:04-docs` | Before release | Audit docs for tone and factual accuracy. |

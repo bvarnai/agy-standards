@@ -65,25 +65,23 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 
 > ▸ Thought for 9s
 >
->  Inspected `docs/spec/` on clean `main`. Previewed a 2-slice roadmap (`S1`: walking skeleton + CI with `epic/**` trigger; `S2`: `clean` command + integration tests) with a 100% spec-coverage matrix.
+>  Inspected `docs/spec/` on `main`. Previewed a 2-slice roadmap (`S1`: walking skeleton + CI; `S2`: `clean` command + integration tests) with a 100% spec-coverage matrix.
 >
->  Drafted parent epic `#3` summary to `.issue-draft.md`. Create `#3` in your tracker with label `epic` (create the `epic` label first if your repository does not have one), then reply with the ticket number.
+>  Drafted parent epic summary to `.issue-draft.md`. Create the parent epic ticket in your tracker, then reply with the ticket ID.
 
 🧑 You:
 
 ```bash
-> created #3 with the epic label
+> created #3
 ```
 
 🤖 Antigravity:
 
 > ▸ Thought for 6s
 >
->  Confirm creating `epic/3` (`git brx create epic/3 -y`), committing `docs/roadmap.md`, and publishing `epic/3`?
+>  Confirm creating the integration branch, committing `docs/roadmap.md`, and publishing the branch?
 
-*(User confirms. Antigravity creates `epic/3`, commits `docs(roadmap): add v0.1.0 implementation roadmap`, runs `git brx publish`, and proceeds to Stage 2 for Slice `S1`.)*
-
-When Slice `S1` (`issue/4`, forked off `epic/3`) passes tests, Antigravity marks `S1` as `Done (#4)` in `docs/roadmap.md`, runs `git brx sync epic/3`, `git brx publish`, and `git brx review epic/3` to target `epic/3` directly. After merging PR `#5`, the user switches back to `epic/3` (`git brx select epic/3 && git brx update && git brx delete issue/4`) for `S2`. Once all slices land, Antigravity deletes `docs/roadmap.md` on `epic/3`, runs `git brx sync && git brx publish && git brx review` for a true merge to `main`, and cleans up (`git brx delete epic/3 && git brx update`).
+*(User confirms. Antigravity switches to the integration branch, commits `docs(roadmap): add v0.1.0 implementation roadmap`, publishes the branch, and proceeds to Stage 2 for Slice `S1`. Each slice branches off and opens its PR against the integration branch, updating `docs/roadmap.md` to `Done (#<id>)`. Once all slices merge, Antigravity removes `docs/roadmap.md` and merges the integration branch into `main`.)*
 
 ---
 

@@ -19,7 +19,7 @@ metadata:
 
 ### 1. Working tree, build & test verification
 - Verify `git status` is clean (no uncommitted modifications or untracked build artifacts) and the active branch is the intended release target.
-- Verify no transient `docs/roadmap.md` remains on the release branch (if auditing an `epic/*` branch before merging to the default branch, flag any remaining `Pending` slices in `docs/roadmap.md` as a `P0` blocker).
+- Verify no transient `docs/roadmap.md` remains on the release branch (if auditing an integration branch before merging to the default branch, flag any remaining `Pending` slices in `docs/roadmap.md` as a `P0` blocker).
 - Execute the full automated test suite (with race detection / memory checks enabled) and static analysis/linters (`go vet`, `ruff check`, `mypy`, `shellcheck`, compiler warnings).
 
 ### 2. Manifest, version & sanity alignment

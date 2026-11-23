@@ -8,14 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- `/standards:01-roadmap` skill (`skills/01-roadmap/SKILL.md`) to partition `docs/spec/` into dependency-ordered vertical slices tracked in a transient `docs/roadmap.md` on `epic/*` integration branches (`#55`).
-- Epic-aware workflow guidance for child slice branches under `epic/<E>` in `skills/02-issue/SKILL.md`, `skills/03-implement/SKILL.md`, and `docs/philosophy.md` (`#55`).
+- `/standards:01-roadmap` skill (`skills/01-roadmap/SKILL.md`) to partition `docs/spec/` into dependency-ordered vertical slices tracked in a transient `docs/roadmap.md` on an integration branch (`#55`).
+- Epic-aware workflow guidance for child slice branches on an integration branch in `skills/02-issue/SKILL.md`, `skills/03-implement/SKILL.md`, and `docs/philosophy.md` (`#55`).
 - `metadata.lifecycle_stage` parity verification in `tests/lint/helpers.bash` and `tests/lint/frontmatter.bats` (`#55`).
 - PEP 639 SPDX license metadata and Ruff `>=0.17` `extend-exclude = ["*.md"]` guidance in `standards/python.md` (`#55`).
 
 ### Changed
 - **BREAKING:** Renumbered lifecycle skills `01-issue`..`05-release` to `02-issue`..`06-release` (`/standards:02-issue` through `/standards:06-release`) to insert `/standards:01-roadmap` (`#55`).
-- Updated `skills/03-implement/SKILL.md` and `.github/workflows/ci.yml` to trigger CI on `"epic/**"` alongside `main`, and updated `skills/04-docs/SKILL.md` and `skills/05-audit/SKILL.md` to exclude or verify transient `docs/roadmap.md` files (`#55`).
+- Updated `skills/04-docs/SKILL.md` and `skills/05-audit/SKILL.md` to exclude or verify transient `docs/roadmap.md` files (`#55`).
 - Updated `README.md`, `docs/models.md`, `docs/walkthrough.md`, `tests/README.md`, and `.agents/skills/standards-models/SKILL.md` for the `00`–`06` two-path workflow (`#55`).
 
 ### Fixed
