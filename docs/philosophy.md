@@ -51,9 +51,9 @@ Commits and branches are separate concerns. A commit records one piece of work, 
 | :--- | :--- | :--- | :--- | :--- |
 | **`issue/*`** | Single PR-sized task or roadmap slice | Rebase | Squash (1 commit) | Default for Day-2 fixes, docs, and individual epic slices |
 | **`feature/*`** | Single cohesive PR with collaborators | Merge | Squash (1 commit) | Only when multiple people commit directly to one PR |
-| **`epic/*`** | Multi-PR milestone (parallel integration) | Merge | True merge (non-squash) | Greenfield bootstraps (`v0.1.0`) and multi-PR epics |
+| **`epic/*`** | Multi-PR milestone (parallel integration) | Merge | True merge (non-squash) | New projects (`v0.1.0`) and multi-PR epics |
 
-For greenfield builds or multi-PR epics, an `epic/*` integration branch paired with a transient `docs/roadmap.md` breaks the full specification into small, reviewable child `issue/*` PRs—preventing giant unreviewable branches without leaving planning clutter in `main`.
+For new projects or multi-PR epics, an `epic/*` integration branch paired with a transient `docs/roadmap.md` breaks the full specification into small, reviewable child `issue/*` PRs—preventing giant unreviewable branches without leaving planning clutter in `main`.
 
 ## Write it down first
 

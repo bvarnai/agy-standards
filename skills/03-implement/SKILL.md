@@ -27,7 +27,7 @@ metadata:
 ## Implementation workflows
 
 ### 1. Feature / refactor workflow
-1. **Day-0 scaffolding (new repositories only)**: When bootstrapping a brand-new project from `docs/spec/`, initialize standard governance and build files (`LICENSE`, `README.md`, `CHANGELOG.md`, `.gitignore`, `.gitattributes` with `* text=auto eol=lf`, and `.github/workflows/ci.yml` triggering `push` and `pull_request` on both the default branch (`main`) and `"epic/**"`).
+1. **Day-0 scaffolding (new repositories only)**: When starting a new project from `docs/spec/`, initialize standard governance and build files (`LICENSE`, `README.md`, `CHANGELOG.md`, `.gitignore`, `.gitattributes` with `* text=auto eol=lf`, and `.github/workflows/ci.yml` triggering `push` and `pull_request` on both the default branch (`main`) and `"epic/**"`).
 2. **Boundary & domain implementation**: Implement narrow execution/runner interfaces (`Runner`, `Inspector`, `HAL`) and core domain logic in small, bisectable units matching the package dependency direction in `global.md`. Update `docs/spec/` and affected user-facing documentation (`README.md`, `docs/user-guide/`) in the same change when CLI flags, configuration keys, or user-visible behaviors change. When implementing a slice tracked in `docs/roadmap.md`, update the slice's `Status` from `Pending` to `Done (#<id>)` (using the slice issue number) in the same child PR (parallel-slice teams may instead update `docs/roadmap.md` directly on `epic/<E>` post-merge).
 3. **Automated tests**: Write unit and black-box verification tests covering every Acceptance Criterion, Edge Case, and Error Matrix row in the spec/issue.
 

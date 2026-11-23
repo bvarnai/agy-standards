@@ -1,6 +1,6 @@
 ---
 name: 01-roadmap
-description: Partition baseline or multi-module docs/spec/ contracts into dependency-ordered vertical slices tracked in a transient docs/roadmap.md on an epic/* integration branch. Activate for greenfield bootstraps, multi-PR epics, or running /01-roadmap.
+description: Partition baseline or multi-module docs/spec/ contracts into dependency-ordered vertical slices tracked in a transient docs/roadmap.md on an epic/* integration branch. Activate for new projects, multi-PR epics, or running /01-roadmap.
 metadata:
   lifecycle_stage: "01-roadmap"
   mode: "interactive"
@@ -12,12 +12,12 @@ metadata:
 ## Constraints
 - **Tone:** Follow [strict-technical-tone.md](../../fragments/strict-technical-tone.md).
 - **Permission:** Create or overwrite `.issue-draft.md` in CWD; create, update, or remove `docs/roadmap.md` on an `epic/*` integration branch (never on the default branch).
-- **Activation scope:** Activate only for greenfield bootstraps after `/00-spec` or multi-PR epics requiring staged vertical delivery. Skip for routine single-PR changes (proceed directly to `/plan` and `/02-issue`).
+- **Activation scope:** Activate only for new projects after `/00-spec` or multi-PR epics requiring staged vertical delivery. Skip for routine single-PR changes (proceed directly to `/plan` and `/02-issue`).
 
 ## Slicing heuristics & invariants
 1. **No spec duplication (DRY):** Never restate CLI flags, schemas, error matrices, or invariants in `docs/roadmap.md`. Cite exact `docs/spec/` filenames, section headings, and `TC-*` scenario IDs instead.
 2. **Just-in-time issue drafting:** Keep each slice entry in `docs/roadmap.md` to a proposed commit-style title, dependencies, spec references, verification milestone, and 2–4 scope bullets. Draft full issue bodies right before implementing each slice via `/02-issue`.
-3. **Walking skeleton + vertical increments:** Make `S1` a runnable foundation with green CI (including Day-0 scaffolding for greenfield repositories), and make subsequent slices thin vertical end-to-end capabilities rather than horizontal layers (avoid *"all models"* $\rightarrow$ *"all storage"* $\rightarrow$ *"all CLI"*).
+3. **Walking skeleton + vertical increments:** Make `S1` a runnable foundation with green CI (including Day-0 scaffolding for new repositories), and make subsequent slices thin vertical end-to-end capabilities rather than horizontal layers (avoid *"all models"* $\rightarrow$ *"all storage"* $\rightarrow$ *"all CLI"*).
 4. **100% spec-coverage gate:** Include a **Spec-coverage matrix** mapping every file, major section, and `TC-*` scenario in `docs/spec/` to an owner slice (or explicitly marking deferred non-goals).
 5. **Transient lifecycle:** `docs/roadmap.md` lives strictly on `epic/<E>`, updates slice status (`Pending` $\rightarrow$ `Done (#<N>)` using the slice issue number) inside each child slice PR (parallel-slice teams may instead update `docs/roadmap.md` directly on `epic/<E>` post-merge to avoid rebase conflicts), and is removed on `epic/<E>` before merging into the default branch.
 

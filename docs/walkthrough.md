@@ -46,9 +46,9 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 
 ---
 
-## Stage 1 — Epic roadmap *(greenfield / multi-PR epics)*
+## Stage 1 — Epic roadmap *(new projects / multi-PR epics)*
 
-*(Skip this stage for single-PR changes and jump to [Stage 2](#stage-2--issue-drafting). Run it after `/standards:00-spec` when bootstrapping a project or breaking a multi-module spec into staged PRs.)*
+*(Skip this stage for single-PR changes and jump to [Stage 2](#stage-2--issue-drafting). Run it after `/standards:00-spec` when starting a new project or breaking a multi-module spec into staged PRs.)*
 
 ```bash
 > /plan
