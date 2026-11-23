@@ -45,8 +45,8 @@ flowchart LR
 ```
 
 1. **Upfront design (`/standards:00-spec`, `/standards:01-roadmap`, as needed)**:
-   - **Write or update specs (`/standards:00-spec`)**: Create or update `docs/spec/` when starting a new project, adding a module, or documenting existing code.
-   - **Slice a large spec (`/standards:01-roadmap`)**: When a new project or epic spec is too large for one PR, split `docs/spec/` into ordered vertical slices (`docs/roadmap.md` on an `epic/<E>` integration branch), then run the **Daily development loop** once per slice.
+   - **Write or update specs (`/standards:00-spec`)**: Create or update `docs/spec/` when starting a new project, adding a module, designing a large feature/change, or documenting existing code.
+   - **Slice a large spec (`/standards:01-roadmap`)**: When a new or updated spec is too large for one PR, split the work into ordered vertical slices (`docs/roadmap.md` on an `epic/<E>` integration branch), then run the **Daily development loop** once per slice.
 2. **Daily development loop (`Plan` $\rightarrow$ `/standards:02-issue` $\rightarrow$ `/standards:03-implement`)**:
    - **Plan (`--mode plan` / `/plan`)**: Discuss the problem and agree on the approach before touching code (or select the next `Pending` roadmap slice when inside an epic).
    - **Create issue (`/standards:02-issue`)**: Turn the agreed plan or roadmap slice into a structured issue draft (`.issue-draft.md`) with acceptance criteria, edge cases, and test cases.

@@ -5,8 +5,8 @@ Technical specifications (`docs/spec/`) define the living state of the system, a
 ## Core rules
 
 1. **Plan $\rightarrow$ Issue $\rightarrow$ Spec & Code workflow**:
-   - **System specifications (`docs/spec/`)**: Author or update system and module specifications via `/00-spec` when starting a new project, adding a new module, or documenting existing code.
-   - **Epic roadmap (`docs/roadmap.md`)**: For new projects or multi-PR epics, run `/01-roadmap` after `/00-spec` to partition `docs/spec/` into dependency-ordered vertical slices on an `epic/<E>` integration branch; keep `docs/roadmap.md` strictly on `epic/<E>` as a transient index and remove it before merging `epic/<E>` into the default branch.
+   - **System specifications (`docs/spec/`)**: Author or update system and module specifications via `/00-spec` when starting a new project, adding a new module, designing a large feature/change, or documenting existing code.
+   - **Epic roadmap (`docs/roadmap.md`)**: When a new or updated spec is too large for a single PR, run `/01-roadmap` after `/00-spec` to partition the work into dependency-ordered vertical slices on an `epic/<E>` integration branch; keep `docs/roadmap.md` strictly on `epic/<E>` as a transient index and remove it before merging `epic/<E>` into the default branch.
    - **Change tracking (issues)**: Explore and align on new features, refactors, or fixes in Plan mode (`--mode plan` / `/plan`), then crystallize the agreed plan (or the next `Pending` slice when working on an epic) into an issue via `/02-issue` before writing implementation code. Self-contained trivial fixes (`docs:`, `chore:`, `ci:`, or minor bug fixes that do not alter specs or interfaces) may skip `/02-issue` and go directly to implementation.
    - **Implementation (`/03-implement`)**: Pull requests and commit diffs trace directly to the target issue and `docs/spec/`; PR descriptions and reviews verify code quality against them.
 2. **Living spec synchronization (no spec drift)**:
