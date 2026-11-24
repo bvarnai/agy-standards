@@ -26,12 +26,12 @@ metadata:
 ### Phase A — Preview & parent epic ticket (on default branch)
 1. Inspect `docs/spec/` (including `git diff docs/spec/` when `/00-spec` modified existing specs) and build/CI files in `CWD`; verify the active branch is the default branch with no unrelated uncommitted changes (uncommitted `docs/spec/` edits from `/00-spec` are allowed and carried onto the integration branch in Phase B so the default branch never carries unimplemented spec drift).
 2. Partition the specification into slices `S1`–`Sn` and preview `docs/roadmap.md` in chat without writing it to the default branch.
-3. Write the parent epic ticket summary (milestone scope, ordered slice list `S1`–`Sn`, and end-to-end verification criteria) to `.issue-draft.md` (`Overwrite: true`) for the user to create the parent ticket in their tracker.
+3. Write the parent epic ticket summary (epic goal, ordered slice list `S1`–`Sn`, and end-to-end verification criteria) to `.issue-draft.md` (`Overwrite: true`) for the user to create the parent ticket in their tracker.
 
 ### Phase B — Provision integration branch & commit roadmap (after parent ticket exists)
 1. Wait for explicit confirmation and create the integration branch (with `git-brx` on `PATH`, follow the `git-brx` skill; without `git-brx`, ask or follow the project's branching convention).
 2. Write `docs/roadmap.md` using the template below with the parent ticket ID and integration branch name populated cleanly.
-3. Propose staging and committing `docs/roadmap.md` (plus any uncommitted `docs/spec/` updates carried from `/00-spec`) on the integration branch (`docs(roadmap): add <milestone> implementation roadmap`), wait for confirmation, publish the integration branch so child slice PRs can target it, and hand off `S1` to `/02-issue`.
+3. Propose staging and committing `docs/roadmap.md` (plus any uncommitted `docs/spec/` updates carried from `/00-spec`) on the integration branch (`docs(roadmap): add <epic-theme> implementation roadmap`), wait for confirmation, publish the integration branch so child slice PRs can target it, and hand off `S1` to `/02-issue`.
 
 ### Phase C — Epic closure (after final slice merges into the integration branch)
 1. Switch to and update the integration branch, verify every slice in `docs/roadmap.md` is marked `Done (#N)`, and run the full stack test and linter suite.
@@ -41,12 +41,12 @@ metadata:
 ## Mandatory `docs/roadmap.md` template
 
 ```markdown
-# Implementation roadmap: <project> <milestone>
+# Implementation roadmap: <project> — <epic theme>
 
-## Target milestone & scope
+## Scope
 
-- **Milestone:** `<vX.Y.Z or epic theme>`
 - **Epic:** `#<id>` (integration branch `<branch>`, merged to `<default>` after all slices complete and this file is removed)
+- **Goal:** `<1-sentence summary of the capability or spec delta>`
 - **Non-goals:** `<Explicitly deferred spec extensions or out-of-scope items>`
 
 ## Ordered slices
