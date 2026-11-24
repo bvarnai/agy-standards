@@ -46,3 +46,7 @@ When authoring specifications for non-CLI domains without a dedicated file in `t
 4. **Execution boundaries, concurrency & resource/ISR safety**
 5. **Package / module architecture & shared domain models**
 6. **Module registry & verification plan**
+
+## Next step
+- **Spec or spec update too large for a single PR (new project or multi-PR epic):** Keep any uncommitted `docs/spec/` edits in the working tree (or use the baseline specs on a new repository) and proceed to `/01-roadmap` to partition the work into dependency-ordered vertical slices on an integration branch.
+- **Routine single-PR change:** Proceed to `/plan` and `/02-issue` to draft the work-unit issue.

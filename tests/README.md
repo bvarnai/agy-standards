@@ -4,7 +4,7 @@ Static checks for the plugin's prompt files. They read files only: no agent runs
 
 | File | What it checks |
 | :--- | :--- |
-| `lint/frontmatter.bats` | Every `skills/*/SKILL.md` and `.agents/skills/*/SKILL.md` has YAML frontmatter with a non-empty `description`, a `name` matching its directory, and a `<plugin-name>-` prefix on workspace skills. |
+| `lint/frontmatter.bats` | Every `skills/*/SKILL.md` and `.agents/skills/*/SKILL.md` has YAML frontmatter with a non-empty `description`, a `name` matching its directory, a `metadata.lifecycle_stage` matching its directory when declared, and a `<plugin-name>-` prefix on workspace skills. |
 | `lint/links.bats` | Every relative Markdown link and `@[…](…)` import in `rules/`, `skills/`, `.agents/skills/`, `standards/`, `fragments/`, `docs/`, and `README.md` resolves. Links inside code blocks and inline code are ignored. |
 | `lint/budget.bats` | `rules/GEMINI.md` plus its `@` imports stays within Antigravity's [24,000-byte rule cap](https://antigravity.google/docs/rules-workflows). Over the cap, Antigravity truncates the file. |
 | `lint/conventions.bats` | No commit template in `skills/` uses an issue number as its scope (`feat(#42): …`), no rule or skill calls the GitHub CLI (`gh …`), and every skill uses the canonical tone fragment reference. |
@@ -22,4 +22,4 @@ bats tests/lint
 shellcheck tests/lint/helpers.bash
 ```
 
-These checks catch structural problems. They don't check whether the agent behaves as intended. For that, reread the rules and skills as a whole, for example by running `/standards:04-audit` against this repo before tagging a release.
+These checks catch structural problems. They don't check whether the agent behaves as intended. For that, reread the rules and skills as a whole, for example by running `/standards:05-audit` against this repo before tagging a release.

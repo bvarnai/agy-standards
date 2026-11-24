@@ -39,13 +39,13 @@ If the agent hits a design question the spec doesn't answer, the intended behavi
 | Layer | Loaded | Purpose | Why it's separate |
 | :--- | :--- | :--- | :--- |
 | **Rules** (`rules/`) | Always | Workflow, commit conventions, tool and approval policy | Kept small because they cost context on every turn |
-| **Skills** (`skills/`) | When invoked (`/standards:00-spec` … `/standards:05-release`) | One lifecycle step each | Each step runs in its own session with its own effort level |
+| **Skills** (`skills/`) | When invoked (`/standards:00-spec` … `/standards:06-release`) | One lifecycle step each | Each step runs in its own session with its own effort level |
 | **Standards** (`standards/`) | When a stack marker matches (`go.mod`, `pyproject.toml`, `pom.xml`, …) | Language-specific idioms and verification commands | A Go project doesn't need Java rules in context |
 | **Fragments** (`fragments/`) | Imported by rules or referenced by skills | Shared constraints such as tone | Written once, reused everywhere |
 
 [`git-brx`](https://github.com/bvarnai/git-brx) is a separate, optional companion for your side of the workflow. It brings its own branching conventions and turns them into concrete commands, so you don't have to speak fluent Git. Without it, the agent follows the project's own conventions.
 
-Commits and branches are separate concerns. A commit records one piece of work, and it's usually written by the agent. A branch collects those pieces and decides how they're synced and merged. Which branch a piece of work belongs on is a human call, which is why `git brx create` asks for the branch type explicitly.
+Commits and branches are separate concerns. A commit records one piece of work, and it's usually written by the agent. A branch collects those pieces and decides how they're synced and merged. For a new project or a large spec change that doesn't fit in a single PR, `/standards:01-roadmap` uses an integration branch with a transient `docs/roadmap.md` index so each slice lands as a small, reviewable child PR before the integration branch merges into `main`.
 
 ## Write it down first
 

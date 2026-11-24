@@ -46,7 +46,46 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 
 ---
 
-## Stage 1 — Issue drafting
+## Stage 1 — Epic roadmap *(new projects / multi-PR epics)*
+
+*(Skip this stage for single-PR changes and jump to [Stage 2](#stage-2--issue-drafting). Run it after `/standards:00-spec` when starting a new project or breaking a multi-module spec into staged PRs.)*
+
+```bash
+> /plan
+> /effort high
+```
+
+🧑 You:
+
+```bash
+> /standards:01-roadmap slice the baseline specs for v0.1.0
+```
+
+🤖 Antigravity:
+
+> ▸ Thought for 9s
+>
+>  Inspected `docs/spec/` on `main`. Previewed a 2-slice roadmap (`S1`: walking skeleton + CI; `S2`: `clean` command + integration tests) with a 100% spec-coverage matrix.
+>
+>  Drafted parent epic summary to `.issue-draft.md`. Create the parent epic ticket in your tracker, then reply with the ticket ID.
+
+🧑 You:
+
+```bash
+> created #3
+```
+
+🤖 Antigravity:
+
+> ▸ Thought for 6s
+>
+>  Confirm creating the integration branch, committing `docs/roadmap.md`, and publishing the branch?
+
+*(User confirms. Antigravity switches to the integration branch, commits `docs(roadmap): add v0.1.0 implementation roadmap`, publishes the branch, and proceeds to Stage 2 for Slice `S1`. Each slice branches off and opens its PR against the integration branch, updating `docs/roadmap.md` to `Done (#<id>)`. Once all slices merge, Antigravity removes `docs/roadmap.md` and merges the integration branch into `main`.)*
+
+---
+
+## Stage 2 — Issue drafting
 
 ```bash
 > /effort medium
@@ -55,10 +94,10 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 🧑 You:
 
 ```bash
-> /standards:01-issue add the clean subcommand from the spec
+> /standards:02-issue add the clean subcommand from the spec
 ```
 
-*(If you run `/standards:01-issue` with no description in a fresh session, the agent asks 1–3 clarifying questions first; otherwise it derives the commit-format title from context.)*
+*(If you run `/standards:02-issue` with no description in a fresh session, the agent asks 1–3 clarifying questions first; otherwise it derives the commit-format title from context.)*
 
 🤖 Antigravity:
 
@@ -75,11 +114,11 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 >   - **Edge cases and failure modes:** Valid symlinks untouched; missing target directory skipped with warning; permission error returns exit `1`; invalid `dotctl.yaml` returns exit `2`.
 >   - **Verification:** `go test -race ./...` and `go vet ./...`.
 >
->  Create the ticket in your tracker from `.issue-draft.md`, then run `/standards:02-implement`.
+>  Create the ticket in your tracker from `.issue-draft.md`, then run `/standards:03-implement`.
 
 ---
 
-## Stage 2 — Implementation
+## Stage 3 — Implementation
 
 ```bash
 > /effort medium
@@ -88,7 +127,7 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 🧑 You:
 
 ```bash
-> /standards:02-implement implement issue from @[.issue-draft.md]
+> /standards:03-implement implement issue from @[.issue-draft.md]
 ```
 
 🤖 Antigravity:
@@ -147,14 +186,14 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 
 ---
 
-## Stage 3–5 — Release pipeline
+## Stage 4–6 — Release pipeline
 
-### 3. Documentation review
+### 4. Documentation review
 
 🧑 You:
 
 ```bash
-> /standards:03-docs review README.md
+> /standards:04-docs review README.md
 ```
 
 🤖 Antigravity:
@@ -174,7 +213,7 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 
 *(Applied, committed, and merged.)*
 
-### 4. Pre-release audit
+### 5. Pre-release audit
 
 ```bash
 > /effort low
@@ -182,7 +221,7 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 
 🧑 You:
 ```bash
-> /standards:04-audit
+> /standards:05-audit
 ```
 
 🤖 Antigravity:
@@ -199,11 +238,11 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 >  | Release and CI artifacts | Pass | `LICENSE`, `CHANGELOG.md`, `.github/workflows/ci.yml` present |
 >  | **Release readiness verdict** | **GO** | No `P0` blockers |
 
-### 5. Release
+### 6. Release
 
 🧑 You:
 ```bash
-> /standards:05-release
+> /standards:06-release
 ```
 
 🤖 Antigravity:
@@ -212,9 +251,9 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 >
 >  Latest tag is `v0.3.0`. Commits since `v0.3.0` include `feat(clean): add dotctl clean subcommand` → next SemVer: `v0.4.0`.
 >
->  Updated `CHANGELOG.md` (moved `[Unreleased]` items under `## [0.4.0] - 2026-11-16`). **Stopped before tagging.** Create a release prep branch (`chore(release): prepare v0.4.0`), merge it into `main`, then re-run `/standards:05-release`.
+>  Updated `CHANGELOG.md` (moved `[Unreleased]` items under `## [0.4.0] - 2026-11-16`). **Stopped before tagging.** Create a release prep branch (`chore(release): prepare v0.4.0`), merge it into `main`, then re-run `/standards:06-release`.
 
-*(User branches, commits, merges PR, updates `main`, and runs `/standards:05-release` again.)*
+*(User branches, commits, merges PR, updates `main`, and runs `/standards:06-release` again.)*
 
 🤖 Antigravity:
 

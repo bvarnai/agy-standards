@@ -12,7 +12,7 @@ These standards apply to Python CLIs, tools, and services whenever `pyproject.to
    - Accept `TextIO` streams (`stdin`, `stdout`, `stderr`) at CLI handler boundaries instead of writing directly to `sys.stdout`/`sys.stderr`. Reserve `stdout` for primary output, machine-readable payloads (`JSON`/`TOML`), and `--help`/`--version`; route diagnostics, progress, warnings, and errors to `stderr` (respecting `NO_COLOR` and `TERM=dumb`).
    - Prefer the Python 3.12+ standard library (`argparse`, `pathlib`, `json`, `tomllib`, `dataclasses`, `subprocess`, `contextlib`, `urllib`); add focused libraries (e.g., **[Click](https://click.palletsprojects.com/)** or **[Typer](https://typer.tiangolo.com/)** for multi-subcommand CLIs, **[Rich](https://rich.readthedocs.io/)** for TUI rendering, **[Pydantic](https://docs.pydantic.dev/)** for complex external boundary schemas) only when complexity warrants it.
 3. **Packaging & version metadata**:
-   - Declare dependencies, tool configurations (`ruff`, `mypy`/`pyright`, `pytest`), and `requires-python` in a single `pyproject.toml` (PEP 621), managed with a lockfile (`uv.lock` via **[uv](https://docs.astral.sh/uv/)** or repository-standard installer).
+   - Declare dependencies, tool configurations (`ruff`, `mypy`/`pyright`, `pytest`), `requires-python`, and PEP 639 SPDX license metadata (`license = "MIT"`, `license-files = ["LICENSE"]` with `setuptools>=77.0` or equivalent modern build backends) in a single `pyproject.toml` (PEP 621), managed with a lockfile (`uv.lock` via **[uv](https://docs.astral.sh/uv/)** or repository-standard installer).
    - Read runtime version metadata via `importlib.metadata.version("<dist-name>")` (with a `"0.0.0+dev"` `PackageNotFoundError` fallback) rather than duplicating version strings across source files.
 
 ## Code discipline, typing, errors & subprocesses
@@ -34,4 +34,4 @@ These standards apply to Python CLIs, tools, and services whenever `pyproject.to
    - Isolate filesystem and CLI tests using `pytest` fixtures (`tmp_path`, `monkeypatch.setenv`, `monkeypatch.chdir`, `capsys`) with sanitized environment overrides (`HOME`, `XDG_CONFIG_HOME`, tool config vars) so tests never read or mutate host `~/.gitconfig`, `~/.ssh`, or user state.
    - Inject clocks or callables for time/retry logic rather than calling `time.sleep` in unit tests.
 3. **Static analysis & CI parity**:
-   - Require zero lint or formatting violations (`ruff check .`, `ruff format --check .`), zero type errors (`mypy --strict src tests` or `pyright`), and a clean test suite (`pytest`).
+   - Require zero lint or formatting violations (`ruff check .`, `ruff format --check .`), zero type errors (`mypy --strict src tests` or `pyright`), and a clean test suite (`pytest`). Configure `extend-exclude = ["*.md"]` under `[tool.ruff]` in `pyproject.toml` so Ruff `>=0.17` Markdown code-block formatting does not flag aligned comments or illustrative snippets inside `docs/spec/*.md`.
