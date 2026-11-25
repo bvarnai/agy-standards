@@ -1,6 +1,6 @@
 {
   "name": "standards",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "displayName": "Antigravity Standards",
   "description": "Centralized standards, lifecycle skills, and stack-specific engineering rules for AI coding agents.",
   "logo": "assets/logo.svg"

@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-25
+
 ### Added
 - `/standards:01-roadmap` skill (`skills/01-roadmap/SKILL.md`) to partition `docs/spec/` into dependency-ordered vertical slices tracked in a transient `docs/roadmap.md` on an integration branch, with release-agnostic `Scope`/`Goal` fields and `epic(<component>): <short title>` parent ticket titles (`#55`, `#57`, `#59`).
 - Epic-aware workflow guidance for child slice branches on an integration branch in `skills/02-issue/SKILL.md`, `skills/03-implement/SKILL.md`, and `docs/philosophy.md` (`#55`).
