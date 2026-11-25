@@ -31,7 +31,7 @@ Classify the available models across the five `agy-standards` execution profiles
 | `00-spec`<br>`01-roadmap` | **1. Architecture, specs & epic slicing** | Multi-file synthesis, slicing & invariant design | Deepest reasoning, legacy reverse-engineering accuracy, long-context coherence, vertical slice decomposition. | `--mode plan --effort high` |
 | `02-issue`<br>`03-implement` | **2. Hands-on coding, TDD & tool loops** | 10–20 step tool-loop latency & surgical diff quality | Strict adherence to existing code style, minimal over-abstraction, fast `edit_file` $\rightarrow$ test cycles. | `--effort medium`<br>*(or `high` / `xhigh` for race/concurrency bugs)* |
 | `04-docs` | **3. Documentation tone & accuracy review** | Natural developer prose + technical verification | Avoids stiff AI phrasing while accurately cross-checking flags and examples against code. | `--effort medium` |
-| `05-audit` | **4. Pre-release & cross-artifact audit** | High-recall cross-checking (Spec $\leftrightarrow$ Code $\leftrightarrow$ Docs $\leftrightarrow$ CI) | Low false-positive rate, high attention across many files in a single read-only pass. | `--effort high`<br>*(or `medium` for branch diffs)* |
+| `05-audit` | **4. Pre-release readiness checklist** | Deterministic checklist execution (working tree, tests/linters, manifests, CI) | Low false-positive rate and fast turnaround on the release branch without re-auditing prose or re-reading every source file. | `--effort low` |
 | `06-release` | **5. Mechanical release cut** | Turnaround speed & strict procedure compliance | Fast, deterministic execution (SemVer bump, `CHANGELOG.md` update, Git tag staging) without re-auditing. | `--effort low` |
 
 ## Output contract
