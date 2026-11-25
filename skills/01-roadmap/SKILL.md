@@ -26,7 +26,7 @@ metadata:
 ### Phase A — Preview & parent epic ticket (on default branch)
 1. Inspect `docs/spec/` (including `git diff docs/spec/` when `/00-spec` modified existing specs) and build/CI files in `CWD`; verify the active branch is the default branch with no unrelated uncommitted changes (uncommitted `docs/spec/` edits from `/00-spec` are allowed and carried onto the integration branch in Phase B so the default branch never carries unimplemented spec drift).
 2. Partition the specification into slices `S1`–`Sn` and preview `docs/roadmap.md` in chat without writing it to the default branch.
-3. Write the parent epic ticket summary (epic goal, ordered slice list `S1`–`Sn`, and end-to-end verification criteria) to `.issue-draft.md` (`Overwrite: true`) for the user to create the parent ticket in their tracker.
+3. Write the parent epic ticket summary (using title format `epic(<component>): <short title>`, epic goal, ordered slice list `S1`–`Sn`, and end-to-end verification criteria) to `.issue-draft.md` (`Overwrite: true`) for the user to create the parent ticket in their tracker.
 
 ### Phase B — Provision integration branch & commit roadmap (after parent ticket exists)
 1. Wait for explicit confirmation and create the integration branch (with `git-brx` on `PATH`, follow the `git-brx` skill; without `git-brx`, ask or follow the project's branching convention).
