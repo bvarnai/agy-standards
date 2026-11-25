@@ -1,8 +1,8 @@
-# Engineering philosophy: Why this workflow exists
+# Engineering philosophy: why this workflow exists
 
 This document is for people deciding whether `agy-standards` fits how they work, or trying to understand why it behaves the way it does. It isn't loaded into the agent's context.
 
-## The shift: Where did the thinking time go?
+## The shift: where did the thinking time go?
 
 Before AI coding agents, writing syntax took most of the time. Typing out structs, error handling, and boilerplate took hours—and **during those hours, design happened in the background**. While writing code line by line, your mind turned the problem over and caught edge cases along the way:
 - *"What if this file is a broken symlink?"*

@@ -48,7 +48,7 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 
 ## Stage 1 — Epic roadmap *(new projects / multi-PR epics)*
 
-*(Skip this stage for single-PR changes and jump to [Stage 2](#stage-2--issue-drafting). Run it after `/standards:00-spec` when starting a new project or breaking a multi-module spec into staged PRs.)*
+*(Skip this stage for single-PR changes and jump to [Stage 2](#stage-2--issue-drafting). Run it after `/standards:00-spec` when a new or updated spec is too large for a single PR.)*
 
 ```bash
 > /plan
@@ -58,7 +58,7 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 🧑 You:
 
 ```bash
-> /standards:01-roadmap slice the baseline specs for v0.1.0
+> /standards:01-roadmap slice the baseline specs for dotctl
 ```
 
 🤖 Antigravity:
@@ -67,7 +67,7 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 >
 >  Inspected `docs/spec/` on `main`. Previewed a 2-slice roadmap (`S1`: walking skeleton + CI; `S2`: `clean` command + integration tests) with a 100% spec-coverage matrix.
 >
->  Drafted parent epic summary to `.issue-draft.md`. Create the parent epic ticket in your tracker, then reply with the ticket ID.
+>  Drafted parent epic (`epic(cli): initial dotctl implementation`) to `.issue-draft.md`. Create the parent epic ticket in your tracker, then reply with the ticket ID.
 
 🧑 You:
 
@@ -81,7 +81,7 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 >
 >  Confirm creating the integration branch, committing `docs/roadmap.md`, and publishing the branch?
 
-*(User confirms. Antigravity switches to the integration branch, commits `docs(roadmap): add v0.1.0 implementation roadmap`, publishes the branch, and proceeds to Stage 2 for Slice `S1`. Each slice branches off and opens its PR against the integration branch, updating `docs/roadmap.md` to `Done (#<id>)`. Once all slices merge, Antigravity removes `docs/roadmap.md` and merges the integration branch into `main`.)*
+*(User confirms. Antigravity switches to the integration branch, commits `docs(roadmap): add initial dotctl implementation roadmap`, publishes the branch, and proceeds to Stage 2 for Slice `S1`. Each slice branches off and opens its PR against the integration branch, updating `docs/roadmap.md` to `Done (#<id>)`. Once all slices merge, Antigravity removes `docs/roadmap.md` and merges the integration branch into `main`.)*
 
 ---
 
@@ -228,7 +228,7 @@ This walkthrough shows a complete feature-to-release cycle in `agy` with `agy-st
 
 > ▸ Thought for 22s
 >
-> All release checkpoints are passed:
+> All release checkpoints passed:
 >
 >  | Checkpoint | Status | Details |
 >  | :--- | :--- | :--- |
